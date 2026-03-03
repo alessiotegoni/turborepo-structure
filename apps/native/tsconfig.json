@@ -14,7 +14,10 @@
     "*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts"
+    "nativewind-env.d.ts",
+    "uniwind-types.d.ts",
+    "../../packages/features/src/env.d.ts",
+    "../../packages/auth/src/env.d.ts"
   ],
   "exclude": ["node_modules"]
 }

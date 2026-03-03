@@ -17,11 +17,11 @@
   },
   "dependencies": {
     "@heroui/react": "beta",
-    "@heroui/styles": "beta",
-    "class-variance-authority": "^0.7.1",
+    "@heroui/styles": "catalog:",
+    "class-variance-authority": "catalog:",
     "framer-motion": "latest",
-    "heroui-native": "latest",
-    "tailwind-merge": "^3.4.0",
+    "heroui-native": "catalog:",
+    "tailwind-merge": "catalog:",
     "uniwind": "latest"
   },
   "devDependencies": {

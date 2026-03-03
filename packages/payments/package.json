@@ -24,7 +24,7 @@
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",
-    "@types/node": "^22.13.4",
+    "@types/node": "catalog:",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"

@@ -39,9 +39,7 @@ export function SignInScreen({ onSignIn, onSignOut }: SignInScreenProps = {}) {
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !token) return;
-    console.log("email", email);
-    console.log("token", token);
-    
+
     await verifyOtp.mutateAsync({ email, token });
   };
 
@@ -54,7 +52,7 @@ export function SignInScreen({ onSignIn, onSignOut }: SignInScreenProps = {}) {
             className="border-border bg-surface w-full max-w-md space-y-4 rounded-lg border p-6"
             onSubmit={handleSendOtp}
           >
-            <TextField>
+            <TextField className="flex flex-col">
               <Label className="text-sm font-medium">Email</Label>
               <Input
                 className="border-border/60 rounded-full"

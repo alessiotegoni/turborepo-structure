@@ -9,11 +9,7 @@ import { stripeWebhookHandler } from "./routes/stripeWebhook.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(
-  cors({
-    credentials: true,
-  }),
-);
+app.use(cors({ credentials: true }));
 
 // Stripe Webhook needs the raw body to verify signature
 app.post(
@@ -30,10 +26,8 @@ app.use(
   "/api/trpc",
   createExpressMiddleware({
     router: appRouter,
-    createContext: ({ req }) => {
+    createContext: async ({ req }) => {
       const headers = new Headers();
-
-      console.log(req.headers);
 
       for (const [key, value] of Object.entries(req.headers)) {
         if (typeof value === "string") {

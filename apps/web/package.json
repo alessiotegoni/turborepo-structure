@@ -20,8 +20,8 @@
     "@beeto/payments": "workspace:*",
     "@beeto/supabase": "workspace:*",
     "@beeto/ui": "workspace:*",
-    "@heroui/styles": "beta",
-    "@t3-oss/env-nextjs": "^0.13.8",
+    "@heroui/styles": "catalog:",
+    "@t3-oss/env-nextjs": "catalog:",
     "@tanstack/react-form": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
@@ -30,7 +30,7 @@
     "next": "catalog:",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
-    "superjson": "2.2.3",
+    "superjson": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

@@ -21,7 +21,6 @@ export const authRouter = {
         console.error("Error generating magic link:", error);
         throw error;
       }
-
       // 2. Send custom email wrapper
       if (data.properties?.action_link) {
         const sendResult = await sendAuthEmail({
@@ -46,8 +45,9 @@ export const authRouter = {
         email: input.email,
         token: input.token,
         type: "magiclink",
+        // type: ctx.user ? "magiclink" : "signup",
       });
-      console.log(data, error);
+      console.log(data);
 
       if (error) throw error;
       return data;

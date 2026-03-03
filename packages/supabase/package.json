@@ -7,9 +7,9 @@
       "types": "./src/admin.ts",
       "default": "./src/admin.ts"
     },
-    "./web": {
-      "types": "./src/web.ts",
-      "default": "./src/web.ts"
+    "./client": {
+      "types": "./src/client.ts",
+      "default": "./src/client.ts"
     },
     "./server": {
       "types": "./src/server.ts",
@@ -35,7 +35,7 @@
     "@supabase/ssr": "catalog:",
     "@supabase/supabase-js": "catalog:",
     "@t3-oss/env-core": "catalog:",
-    "expo-secure-store": "~55.0.8",
+    "expo-secure-store": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

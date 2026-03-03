@@ -3,6 +3,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { useTRPC } from "@beeto/api/web/react";
+import { createClient } from "@beeto/supabase/client";
 import { toast } from "@beeto/ui/web";
 
 interface UseAuthOptions {
@@ -12,6 +13,7 @@ interface UseAuthOptions {
 
 export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   const trpc = useTRPC();
+  const supabase = createClient();
 
   const signInWithOtp = useMutation({
     ...trpc.auth.signInWithOtp.mutationOptions({
@@ -26,7 +28,13 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
 
   const verifyOtp = useMutation({
     ...trpc.auth.verifyOtp.mutationOptions({
-      onSuccess: () => {
+      onSuccess: async (data) => {
+        if (data?.session) {
+          await supabase.auth.setSession({
+            access_token: data.session.access_token,
+            refresh_token: data.session.refresh_token,
+          });
+        }
         onSignIn?.();
         toast.success("Accesso eseguito!");
       },
@@ -38,9 +46,10 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
 
   const signOut = useMutation({
     ...trpc.auth.signOut.mutationOptions({
-      onSuccess: () => {
+      onSuccess: async () => {
+        await supabase.auth.signOut();
         onSignOut?.();
-        toast.success("Email inviata!");
+        toast.success("Disconnesso!");
       },
       onError: (err) => {
         toast.danger("Errore");

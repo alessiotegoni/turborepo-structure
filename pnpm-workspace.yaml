@@ -5,6 +5,7 @@ packages:
 
 catalog:
   "@eslint/js": ^9.38.0
+  "@heroui/styles": beta
   "@supabase/ssr": ^0.8.0
   "@supabase/supabase-js": ^2.94.1
   "@t3-oss/env-core": ^0.13.8
@@ -23,11 +24,15 @@ catalog:
   drizzle-orm: ^0.44.7
   drizzle-zod: ^0.8.3
   eslint: ^9.38.0
+  expo-constants: ~18.0.13
+  expo-secure-store: ~15.0.8
+  heroui-native: latest
   next: ^16.0.9
   postgres: ^3.4.8
   prettier: ^3.6.2
-  react-native: ~0.83.2
+  react-native: 0.81.5
   stripe: ^17.6.0
+  superjson: 2.2.3
   tailwind-merge: ^3.4.0
   tailwindcss: ^4.1.16
   typescript: ^5.9.3
@@ -54,3 +59,4 @@ overrides:
 publicHoistPattern:
   - "@ianvs/prettier-plugin-sort-imports"
   - prettier-plugin-tailwindcss
+  - "expo-modules-core"
