@@ -1,0 +1,25 @@
+"use client";
+
+import type { User } from "@supabase/supabase-js";
+import React, { createContext, useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+import { useTRPC } from "@beeto/api/web/react";
+
+const UserContext = createContext<{
+  user: User | null;
+  isLoading: boolean;
+}>({ user: null, isLoading: true });
+
+export function UserProvider({ children }: { children: React.ReactNode }) {
+  const trpc = useTRPC();
+  const { data: user, isLoading } = useQuery(trpc.auth.getUser.queryOptions());
+
+  return (
+    <UserContext.Provider value={{ user: user ?? null, isLoading }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+
+export const useUser = () => useContext(UserContext);

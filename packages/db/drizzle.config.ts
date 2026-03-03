@@ -1,14 +1,14 @@
 import type { Config } from "drizzle-kit";
 
-if (!process.env.POSTGRES_URL) {
-  throw new Error("Missing POSTGRES_URL");
-}
+import { supabaseEnv } from "@beeto/supabase/env";
 
-const nonPoolingUrl = process.env.POSTGRES_URL.replace(":6543", ":5432");
+const env = supabaseEnv();
 
 export default {
-  schema: "./src/schema.ts",
+  schema: "./src/schema/index.ts",
+  out: "./src/migrations",
   dialect: "postgresql",
-  dbCredentials: { url: nonPoolingUrl },
+  schemaFilter: ["public"],
+  dbCredentials: { url: process.env.DIRECT_URL || env.DATABASE_URL },
   casing: "snake_case",
 } satisfies Config;

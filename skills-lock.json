@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "drizzle-orm": {
+      "source": "bobmatnyc/claude-mpm-skills",
+      "sourceType": "github",
+      "computedHash": "c5132317134698624d023cbbbb612b99d2b20f532f6d1417639607cf401f03cd"
+    },
+    "heroui-native": {
+      "source": "heroui-inc/heroui",
+      "sourceType": "github",
+      "computedHash": "283b4a5e57701e683fde4a09552597ff7824244e1065d88c40970f77e322e569"
+    },
+    "heroui-react": {
+      "source": "heroui-inc/heroui",
+      "sourceType": "github",
+      "computedHash": "fdff93791a3f712f622cb4557f04e1cafcf637585a3c2df84f743f0d387217b4"
+    },
+    "turborepo": {
+      "source": "vercel/turborepo",
+      "sourceType": "github",
+      "computedHash": "05f8c9c6a5e8574cc64981eb77041a3b25d16ead0985d384b6e20d3556ddbd88"
+    }
+  }
+}

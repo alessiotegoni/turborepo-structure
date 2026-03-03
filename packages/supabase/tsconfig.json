@@ -1,0 +1,9 @@
+{
+  "extends": "@beeto/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node"]
+  },
+  "include": ["src", "env.ts"],
+  "exclude": ["node_modules"]
+}

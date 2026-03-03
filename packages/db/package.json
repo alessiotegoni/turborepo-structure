@@ -1,5 +1,5 @@
 {
-  "name": "@acme/db",
+  "name": "@beeto/db",
   "private": true,
   "type": "module",
   "exports": {
@@ -12,8 +12,8 @@
       "default": "./src/client.ts"
     },
     "./schema": {
-      "types": "./dist/schema.d.ts",
-      "default": "./src/schema.ts"
+      "types": "./dist/schema/index.d.ts",
+      "default": "./src/schema/index.ts"
     }
   },
   "license": "MIT",
@@ -29,19 +29,21 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
-    "drizzle-orm": "^0.44.7",
-    "drizzle-zod": "^0.8.3",
+    "@beeto/supabase": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "drizzle-zod": "catalog:",
+    "postgres": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
-    "drizzle-kit": "^0.31.5",
+    "@beeto/eslint-config": "workspace:*",
+    "@beeto/prettier-config": "workspace:*",
+    "@beeto/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "drizzle-kit": "^0.31.9",
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@beeto/prettier-config"
 }

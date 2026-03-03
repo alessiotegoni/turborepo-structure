@@ -1,12 +1,24 @@
 {
-  "name": "@acme/auth",
+  "name": "@beeto/auth",
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
-    "./middleware": "./src/middleware.ts",
-    "./client": "./src/client.ts",
-    "./env": "./env.ts"
+    "./web": {
+      "types": "./src/web.ts",
+      "default": "./src/web.ts"
+    },
+    "./native": {
+      "types": "./src/native.ts",
+      "default": "./src/native.ts"
+    },
+    "./server": {
+      "types": "./src/server.ts",
+      "default": "./src/server.ts"
+    },
+    "./env": {
+      "types": "./env.ts",
+      "default": "./env.ts"
+    }
   },
   "license": "MIT",
   "scripts": {
@@ -17,20 +29,28 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@acme/db": "workspace:*",
-    "@better-auth/expo": "catalog:",
-    "@t3-oss/env-core": "^0.13.8",
-    "better-auth": "catalog:",
+    "@beeto/db": "workspace:*",
+    "@beeto/supabase": "workspace:*",
+    "@beeto/ui": "workspace:*",
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "@t3-oss/env-core": "catalog:",
+    "@tanstack/react-query": "catalog:",
+    "react": "catalog:react19",
     "zod": "catalog:"
   },
+  "peerDependencies": {
+    "@beeto/api": "workspace:*"
+  },
   "devDependencies": {
-    "@acme/eslint-config": "workspace:*",
-    "@acme/prettier-config": "workspace:*",
-    "@acme/tsconfig": "workspace:*",
-    "@better-auth/cli": "catalog:",
+    "@beeto/eslint-config": "workspace:*",
+    "@beeto/prettier-config": "workspace:*",
+    "@beeto/tsconfig": "workspace:*",
+    "@types/react": "catalog:react19",
     "eslint": "catalog:",
     "prettier": "catalog:",
+    "react-native": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@acme/prettier-config"
+  "prettier": "@beeto/prettier-config"
 }

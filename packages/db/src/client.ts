@@ -1,10 +1,14 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 
-import * as schema from "./schema";
+import { supabaseEnv } from "@beeto/supabase/env";
+
+import * as schema from "./schema/index";
+
+const env = supabaseEnv();
+const client = postgres(env.DATABASE_URL);
 
 export const db = drizzle({
-  client: sql,
+  client,
   schema,
-  casing: "snake_case",
 });
