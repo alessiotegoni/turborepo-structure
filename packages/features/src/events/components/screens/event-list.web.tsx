@@ -7,7 +7,6 @@ import { useEventList } from "../../hooks/use-event-list.web";
 
 export function EventListScreen() {
   const { user } = useUser();
-
   const {
     events,
     title,

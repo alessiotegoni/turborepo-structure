@@ -4,5 +4,19 @@
       "mode": "auto"
     }
   ],
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  // "tailwindCSS.experimental.classRegex": [
+  //   ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+  //   ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+  //   ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  // ],
+  // "tailwindCSS.experimental.configFile": {
+  //   "apps/native/src/styles.css": "packages/**/*.native.{ts,tsx}",
+  //   "apps/web/src/app/styles.css": "packages/**/{*.web.ts,*.web.tsx,*.ts,*.tsx}"
+  // },
+  // "tailwindCSS.includeLanguages": {
+  //   "typescriptreact": "html",
+  //   "javascriptreact": "html",
+  //   "html": "HTML"
+  // }
 }

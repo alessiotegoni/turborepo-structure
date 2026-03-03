@@ -21,7 +21,8 @@
     "class-variance-authority": "^0.7.1",
     "framer-motion": "latest",
     "heroui-native": "latest",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "uniwind": "latest"
   },
   "devDependencies": {
     "@beeto/eslint-config": "workspace:*",

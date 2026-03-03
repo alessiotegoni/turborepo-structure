@@ -1,0 +1,37 @@
+{
+  "name": "@beeto/email",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@beeto/eslint-config": "workspace:*",
+    "@beeto/prettier-config": "workspace:*",
+    "@beeto/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:react19",
+    "eslint": "catalog:",
+    "prettier": "catalog:",
+    "typescript": "catalog:"
+  },
+  "prettier": "@beeto/prettier-config",
+  "dependencies": {
+    "@react-email/components": "^1.0.8",
+    "@sendgrid/mail": "^8.1.6",
+    "@t3-oss/env-core": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "react-email": "^3.0.0",
+    "zod": "catalog:"
+  }
+}

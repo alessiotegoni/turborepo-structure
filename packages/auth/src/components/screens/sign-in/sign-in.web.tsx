@@ -29,13 +29,19 @@ export function SignInScreen({ onSignIn, onSignOut }: SignInScreenProps = {}) {
   const handleSendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    await signInWithOtp.mutateAsync({ email });
-    setStep("otp");
+    const res = await signInWithOtp.mutateAsync({ email });
+
+    if (res.success) {
+      setStep("otp");
+    }
   };
 
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !token) return;
+    console.log("email", email);
+    console.log("token", token);
+    
     await verifyOtp.mutateAsync({ email, token });
   };
 
@@ -77,7 +83,7 @@ export function SignInScreen({ onSignIn, onSignOut }: SignInScreenProps = {}) {
                 <InputOTP.Slot index={5} />
               </InputOTP.Group>
             </InputOTP>
-            <Button type="submit" onPress={() => setStep("email")}>
+            <Button type="submit">
               verify
             </Button>
             <Button variant="secondary" onPress={() => setStep("email")}>

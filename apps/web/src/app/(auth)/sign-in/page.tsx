@@ -8,7 +8,7 @@ export default function SignInPage() {
   const router = useRouter();
   return (
     <SignInScreen
-      onSignIn={() => router.push("/")}
+      onSignIn={() => router.push("/events")}
       onSignOut={() => router.push("/sign-in")}
     />
   );

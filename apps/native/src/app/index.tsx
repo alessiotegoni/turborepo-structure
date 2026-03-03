@@ -56,7 +56,7 @@ function CreatePost() {
   );
 
   return (
-    <View className="mt-4 flex gap-2">
+    <View className="mt-4 flex gap-2 ">
       <TextInput
         className="border-input bg-background text-foreground items-center rounded-md border px-3 text-lg leading-tight"
         value={title}

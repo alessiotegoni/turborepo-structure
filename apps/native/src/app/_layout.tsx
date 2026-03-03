@@ -6,7 +6,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import { queryClient } from "@beeto/api/native";
 import { UserProvider } from "@beeto/auth/native";
-import { HeroUINativeProvider, ToastProvider } from "@beeto/ui/native";
+import { HeroUINativeProvider } from "@beeto/ui/native";
 
 import "../styles.css";
 
@@ -16,8 +16,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <HeroUINativeProvider>
-        <ToastProvider />
+      <HeroUINativeProvider config={{toast: true}}>
         <QueryClientProvider client={queryClient}>
           <UserProvider>
             <Stack

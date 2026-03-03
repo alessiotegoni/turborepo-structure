@@ -3,6 +3,10 @@
   "private": true,
   "type": "module",
   "exports": {
+    "./admin": {
+      "types": "./src/admin.ts",
+      "default": "./src/admin.ts"
+    },
     "./web": {
       "types": "./src/web.ts",
       "default": "./src/web.ts"
