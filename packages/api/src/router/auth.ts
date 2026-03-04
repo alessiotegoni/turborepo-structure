@@ -1,6 +1,8 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
+import { eq } from "@beeto/db";
+import { users } from "@beeto/db/schema";
 import { sendAuthEmail } from "@beeto/email";
 import { createAdminClient } from "@beeto/supabase/admin";
 
@@ -27,7 +29,7 @@ export const authRouter = {
           to: input.email,
           url: data.properties.action_link,
           otp: data.properties.email_otp,
-          isAlreadySignedIn: !!ctx.user
+          isAlreadySignedIn: !!ctx.user,
         });
 
         if (!sendResult.success) {
@@ -41,15 +43,26 @@ export const authRouter = {
   verifyOtp: publicProcedure
     .input(z.object({ email: z.email(), token: z.string() }))
     .mutation(async ({ input, ctx }) => {
+      const [user] = await ctx.db
+        .select()
+        .from(users)
+        .where(eq(users.email, input.email));
+
       const { data, error } = await ctx.supabase.auth.verifyOtp({
         email: input.email,
         token: input.token,
-        type: "magiclink",
-        // type: ctx.user ? "magiclink" : "signup",
+        type: user ? "magiclink" : "signup",
       });
-      console.log(data);
 
       if (error) throw error;
+      if (!data.user?.id) throw new Error("User not found");
+
+      if (!user) {
+        await ctx.db
+          .insert(users)
+          .values({ id: data.user.id, email: input.email });
+      }
+
       return data;
     }),
 

@@ -48,8 +48,6 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             headers.set("x-trpc-source", "nextjs-react");
 
             const supabase = createClient();
-            console.log("supabase", supabase);
-
             const { data } = await supabase.auth.getSession();
             console.log(data);
 

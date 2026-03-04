@@ -9,7 +9,9 @@ import { toast } from "@beeto/ui/web";
 export function useEventList() {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
+
   const { data: events } = useQuery(trpc.event.all.queryOptions());
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 

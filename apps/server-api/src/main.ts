@@ -38,7 +38,7 @@ app.use(
           }
         }
       }
-      console.log(Array.from(headers.entries()));
+      // console.log(Array.from(headers.entries()));
 
       return createTRPCContext({ headers });
     },

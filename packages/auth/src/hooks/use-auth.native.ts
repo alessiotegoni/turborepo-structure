@@ -9,11 +9,10 @@ interface UseAuthOptions {
   onSignOut?: () => void;
 }
 
-export function useAuth(options: UseAuthOptions = {}) {
+export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const supabase = createClient();
-  const { onSignIn, onSignOut } = options;
 
   const signInWithOtp = useMutation({
     ...trpc.auth.signInWithOtp.mutationOptions({

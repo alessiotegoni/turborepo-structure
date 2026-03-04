@@ -1,13 +1,13 @@
 "use client";
 
-import type { User } from "@supabase/supabase-js";
+import type { User as SupabaseUser } from "@supabase/supabase-js";
 import React, { createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-
 import { useTRPC } from "@beeto/api/web/react";
+import { User } from "@beeto/db/schema";
 
 const UserContext = createContext<{
-  user: User | null;
+  user: (SupabaseUser & { db: User }) | null;
   isLoading: boolean;
 }>({ user: null, isLoading: true });
 

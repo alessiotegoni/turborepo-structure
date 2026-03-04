@@ -11,6 +11,7 @@ import superjson from "superjson";
 import { z, ZodError } from "zod/v4";
 
 import { db } from "@beeto/db/client";
+import { User } from "@beeto/db/schema";
 import { createClient } from "@beeto/supabase/server";
 
 /**
@@ -49,10 +50,21 @@ export const createTRPCContext = async ({ headers }: ContextType) => {
     }
   }
 
-  console.log("Logged user:", user?.id ?? "null");
+  let dbUser: User | undefined;
+  if (user && user.email) {
+    dbUser = await db.query.users.findFirst({
+      where: ({ email }, { eq }) => eq(email, user.email!),
+    });
+  }
+  console.log("Logged user:", user?.id ?? "null", dbUser ?? "null");
 
   return {
-    user,
+    user: user && dbUser
+      ? {
+          ...user,
+          db: dbUser,
+        }
+      : null,
     supabase,
     db,
   };
