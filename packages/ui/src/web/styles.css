@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@beeto/tailwind-config/theme";
+
+/* Importiamo il core e l'animazione */
+@import "@heroui/styles";
+
+/* Tailwind scansiona i componenti pre-compilati per web */
+@source "../../../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+@source "../../../../node_modules/@heroui/react/dist/**/*.{js,ts,jsx,tsx}";
+/* Tailwind scansiona i componenti definiti dentro @beeto/ui */
+@source "../../**/*.{ts,tsx}";

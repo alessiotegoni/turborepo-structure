@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "uniwind";
+@import "@beeto/tailwind-config/theme";
+
+/* Importiamo gli stili base di heroui-native */
+@import "heroui-native/styles";
+
+/* Tailwind scansiona i componenti pre-compilati di heroui-native */
+@source "../../../../node_modules/heroui-native/lib";
+/* Tailwind scansiona i componenti definiti dentro @beeto/ui */
+@source "../../**/*.{ts,tsx}";

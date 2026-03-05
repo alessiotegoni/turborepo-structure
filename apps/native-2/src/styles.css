@@ -1,10 +1,4 @@
-@import "tailwindcss";
-@import "uniwind";
-@import "heroui-native/styles";
+@import "@beeto/ui/native/styles";
 
-@import "@beeto/tailwind-config/theme";
-
-@source "../node_modules/heroui-native/lib";
-@source "../../../packages/ui/src/**/*.{ts,tsx}";
 @source "../../../packages/auth/src/**/*.{ts,tsx}";
 @source "../../../packages/features/src/**/*.{ts,tsx}";
