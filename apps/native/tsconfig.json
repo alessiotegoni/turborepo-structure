@@ -18,6 +18,6 @@
     "uniwind-types.d.ts",
     "../../packages/features/src/env.d.ts",
     "../../packages/auth/src/env.d.ts"
-  ],
+, "../native-2/src/app/(auth)", "../native-2/src/app/(public)"  ],
   "exclude": ["node_modules"]
 }

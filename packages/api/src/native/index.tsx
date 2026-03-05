@@ -10,15 +10,20 @@ import { createClient } from "@beeto/supabase/native";
 // import { getUser } from "@beeto/auth/native";
 
 const getBaseUrl = () => {
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL;
+  }
+
   const debuggerHost = Constants.expoConfig?.hostUri;
   const localhost = debuggerHost?.split(":")[0];
 
-  if (!localhost) {
-    throw new Error(
-      "Failed to get localhost. Please point to your production server.",
-    );
+  if (localhost) {
+    return `http://${localhost}:4000`;
   }
-  return `http://${localhost}:4000`;
+
+  // Fallback for when hostUri is not available (e.g. production or development builds without it)
+  // In development, Android emulator uses 10.0.2.2, iOS simulator uses localhost
+  return "http://localhost:4000";
 };
 
 export const queryClient = new QueryClient({

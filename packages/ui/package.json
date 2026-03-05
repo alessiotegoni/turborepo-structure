@@ -16,12 +16,13 @@
     "ui-add": "pnpm dlx shadcn@latest add && prettier src --write --list-different"
   },
   "dependencies": {
-    "@heroui/react": "beta",
+    "@heroui/react": "catalog:",
     "@heroui/styles": "catalog:",
     "class-variance-authority": "catalog:",
     "framer-motion": "latest",
     "heroui-native": "catalog:",
     "tailwind-merge": "catalog:",
+    "tailwind-variants": "catalog:",
     "uniwind": "latest"
   },
   "devDependencies": {

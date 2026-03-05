@@ -1,10 +1,12 @@
 packages:
+  - "!apps/native"
   - apps/*
   - packages/*
   - tooling/*
 
 catalog:
   "@eslint/js": ^9.38.0
+  "@heroui/react": beta
   "@heroui/styles": beta
   "@supabase/ssr": ^0.8.0
   "@supabase/supabase-js": ^2.94.1
@@ -34,6 +36,7 @@ catalog:
   stripe: ^17.6.0
   superjson: 2.2.3
   tailwind-merge: ^3.4.0
+  tailwind-variants: ^3.2.2
   tailwindcss: ^4.1.16
   typescript: ^5.9.3
   zod: ^4.1.12
@@ -47,6 +50,8 @@ catalogs:
 
 linkWorkspacePackages: true
 
+nodeLinker: hoisted
+
 onlyBuiltDependencies:
   - "@tailwindcss/oxide"
   - esbuild
@@ -59,4 +64,4 @@ overrides:
 publicHoistPattern:
   - "@ianvs/prettier-plugin-sort-imports"
   - prettier-plugin-tailwindcss
-  - "expo-modules-core"
+  - expo-modules-core

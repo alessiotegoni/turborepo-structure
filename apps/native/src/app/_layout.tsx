@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { QueryClientProvider } from "@tanstack/react-query";
 
 import { queryClient } from "@beeto/api/native";
-import { UserProvider } from "@beeto/auth/native";
 
 // import { HeroUINativeProvider } from "@beeto/ui/native";
 
@@ -17,7 +16,7 @@ import { HeroUINativeProvider } from "heroui-native";
 export default function RootLayout() {
   return (
     <GestureHandlerRootView>
-      {/* <HeroUINativeProvider> */}
+      <HeroUINativeProvider>
         <QueryClientProvider client={queryClient}>
           <Stack
             screenOptions={{
@@ -31,7 +30,7 @@ export default function RootLayout() {
             }}
           />
         </QueryClientProvider>
-      {/* </HeroUINativeProvider> */}
+      </HeroUINativeProvider>
     </GestureHandlerRootView>
   );
 }
