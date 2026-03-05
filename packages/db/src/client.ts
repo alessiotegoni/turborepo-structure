@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 
-import { supabaseEnv } from "@beeto/supabase/env";
+import { supabaseEnv } from "@beeto/supabase/env.web";
 
 import * as schema from "./schema/index";
 

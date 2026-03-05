@@ -10,6 +10,8 @@ import { env } from "~/env";
 
 import "~/app/styles.css";
 
+import { prefetch, trpc } from "@beeto/api/web/server";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     env.VERCEL_ENV === "production"
@@ -43,6 +45,8 @@ const geistMono = Geist_Mono({
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
+  prefetch(trpc.auth.getUser.queryOptions());
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body

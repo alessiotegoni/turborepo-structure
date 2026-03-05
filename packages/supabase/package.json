@@ -19,9 +19,13 @@
       "types": "./src/native.ts",
       "default": "./src/native.ts"
     },
-    "./env": {
-      "types": "./env.ts",
-      "default": "./env.ts"
+    "./env.web": {
+      "types": "./env.web.ts",
+      "default": "./env.web.ts"
+    },
+    "./env.native": {
+      "types": "./env.native.ts",
+      "default": "./env.native.ts"
     }
   },
   "license": "MIT",

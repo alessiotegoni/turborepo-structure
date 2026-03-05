@@ -1,5 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { supabaseEnv } from "../env";
+import { supabaseEnv } from "../env.web";
 
 const env = supabaseEnv();
 

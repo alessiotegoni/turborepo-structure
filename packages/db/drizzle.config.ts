@@ -1,6 +1,6 @@
 import type { Config } from "drizzle-kit";
 
-import { supabaseEnv } from "@beeto/supabase/env";
+import { supabaseEnv } from "@beeto/supabase/env.web";
 
 const env = supabaseEnv();
 
@@ -9,6 +9,6 @@ export default {
   out: "./src/migrations",
   dialect: "postgresql",
   schemaFilter: ["public"],
-  dbCredentials: { url: process.env.DIRECT_URL || env.DATABASE_URL },
+  dbCredentials: { url: env.DIRECT_URL },
   casing: "snake_case",
 } satisfies Config;

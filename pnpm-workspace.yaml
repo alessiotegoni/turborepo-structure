@@ -24,13 +24,13 @@ catalog:
   drizzle-orm: ^0.44.7
   drizzle-zod: ^0.8.3
   eslint: ^9.38.0
-  expo-constants: ~18.0.13
-  expo-secure-store: ~15.0.8
+  expo-constants: ~55.0.7
+  expo-secure-store: ~55.0.8
   heroui-native: latest
   next: ^16.0.9
   postgres: ^3.4.8
   prettier: ^3.6.2
-  react-native: 0.81.5
+  react-native: 0.83.2
   stripe: ^17.6.0
   superjson: 2.2.3
   tailwind-merge: ^3.4.0

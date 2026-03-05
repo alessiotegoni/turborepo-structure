@@ -1,9 +1,8 @@
 import * as SecureStore from "expo-secure-store";
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import { supabaseEnvNative } from "../env.native";
 
-import { supabaseEnv } from "../env";
-
-const env = supabaseEnv();
+const env = supabaseEnvNative();
 
 const ExpoSecureStoreAdapter = {
   getItem: (key: string) => SecureStore.getItemAsync(key),
@@ -13,8 +12,8 @@ const ExpoSecureStoreAdapter = {
 
 export function createClient() {
   return createSupabaseClient(
-    env.NEXT_PUBLIC_SUPABASE_URL,
-    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    env.EXPO_PUBLIC_SUPABASE_URL,
+    env.EXPO_PUBLIC_SUPABASE_ANON_KEY,
     {
       auth: {
         storage: ExpoSecureStoreAdapter,

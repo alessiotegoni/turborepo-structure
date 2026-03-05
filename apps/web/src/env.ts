@@ -3,7 +3,7 @@ import { vercel } from "@t3-oss/env-nextjs/presets-zod";
 import { z } from "zod/v4";
 
 import { stripeEnv } from "@beeto/payments/env";
-import { supabaseEnv } from "@beeto/supabase/env";
+import { supabaseEnv } from "@beeto/supabase/env.web";
 
 export const env = createEnv({
   extends: [supabaseEnv(), stripeEnv(), vercel()],

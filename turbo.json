@@ -45,14 +45,7 @@
       "interactive": true
     }
   },
-  "globalEnv": [
-    "POSTGRES_URL",
-    "ORD_ID",
-    "AUTH_DISCOAUTH_DISCRD_SECRET",
-    "AUTH_REDIRECT_PROXY_URL",
-    "AUTH_SECRET",
-    "PORT"
-  ],
+  "globalEnv": ["ORD_ID", "PORT"],
   "globalPassThroughEnv": [
     "NODE_ENV",
     "CI",

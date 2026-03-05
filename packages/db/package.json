@@ -11,6 +11,14 @@
       "types": "./dist/client.d.ts",
       "default": "./src/client.ts"
     },
+    "./queries/events": {
+      "types": "./dist/queries/events.d.ts",
+      "default": "./src/queries/events.ts"
+    },
+    "./queries/users": {
+      "types": "./dist/queries/users.d.ts",
+      "default": "./src/queries/users.ts"
+    },
     "./schema": {
       "types": "./dist/schema/index.d.ts",
       "default": "./src/schema/index.ts"

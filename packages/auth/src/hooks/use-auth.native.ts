@@ -45,17 +45,15 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   });
 
   const signOut = useMutation({
-    ...trpc.auth.signOut.mutationOptions({
-      onSuccess: async () => {
-        await supabase.auth.signOut();
-        await queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());
-        toast.show("Disconnesso");
-        onSignOut?.();
-      },
-      onError: () => {
-        toast.show("Errore durante la disconnessione");
-      },
-    }),
+    mutationFn: supabase.auth.signOut,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());
+      toast.show("Disconnesso");
+      onSignOut?.();
+    },
+    onError: () => {
+      toast.show("Errore durante la disconnessione");
+    },
   });
 
   return { signInWithOtp, verifyOtp, signOut };

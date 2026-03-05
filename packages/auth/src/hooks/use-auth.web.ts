@@ -13,7 +13,7 @@ interface UseAuthOptions {
 
 export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   const trpc = useTRPC();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const supabase = createClient();
 
   const signInWithOtp = useMutation({
@@ -47,17 +47,15 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   });
 
   const signOut = useMutation({
-    ...trpc.auth.signOut.mutationOptions({
-      onSuccess: async () => {
-        await supabase.auth.signOut();
-        queryClient.invalidateQueries(trpc.auth.getUser.pathFilter())
-        onSignOut?.();
-        toast.success("Disconnesso!");
-      },
+    mutationFn: supabase.auth.signOut,
+    onSuccess: () => {
+      queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());
+      onSignOut?.();
+      toast.success("Disconnesso!");
+    },
       onError: (err) => {
-        toast.danger("Errore");
-      },
-    }),
+      toast.danger("Errore");
+    },
   });
 
   return { signInWithOtp, verifyOtp, signOut };

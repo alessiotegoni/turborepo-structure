@@ -1,12 +1,11 @@
 import type { TRPCRouterRecord } from "@trpc/server";
 import { z } from "zod";
 
-import { eq } from "@beeto/db";
-import { users } from "@beeto/db/schema";
+import { createUser, getUserByEmail } from "@beeto/db/queries/users";
 import { sendAuthEmail } from "@beeto/email";
 import { createAdminClient } from "@beeto/supabase/admin";
 
-import { protectedProcedure, publicProcedure } from "../trpc";
+import { publicProcedure } from "../trpc";
 
 export const authRouter = {
   signInWithOtp: publicProcedure
@@ -43,10 +42,7 @@ export const authRouter = {
   verifyOtp: publicProcedure
     .input(z.object({ email: z.email(), token: z.string() }))
     .mutation(async ({ input, ctx }) => {
-      const [user] = await ctx.db
-        .select()
-        .from(users)
-        .where(eq(users.email, input.email));
+      const user = await getUserByEmail(input.email);
 
       const { data, error } = await ctx.supabase.auth.verifyOtp({
         email: input.email,
@@ -58,19 +54,14 @@ export const authRouter = {
       if (!data.user?.id) throw new Error("User not found");
 
       if (!user) {
-        await ctx.db
-          .insert(users)
-          .values({ id: data.user.id, email: input.email });
+        await createUser({
+          id: data.user.id,
+          email: input.email,
+        });
       }
 
       return data;
     }),
-
-  signOut: protectedProcedure.mutation(async ({ ctx }) => {
-    const { error } = await ctx.supabase.auth.signOut();
-    if (error) throw error;
-    return { success: true };
-  }),
 
   getUser: publicProcedure.query(({ ctx }) => {
     return ctx.user;

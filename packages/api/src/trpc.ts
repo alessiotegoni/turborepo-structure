@@ -33,21 +33,20 @@ type ContextType = {
 
 export const createTRPCContext = async ({ headers }: ContextType) => {
   const supabase = await createClient(headers);
-  const { data } = await supabase.auth.getUser();
 
-  let user = data.user;
-  if (!user) {
-    const authHeader = headers?.get("Authorization");
-    if (authHeader?.startsWith("Bearer ")) {
-      const token = authHeader.split(" ")[1];
+  let user = null;
+  const authHeader = headers.get("Authorization");
 
-      if (token) {
-        const { data } = await supabase.auth.getUser(token);
-        if (data?.user) {
-          user = data.user;
-        }
-      }
+  if (authHeader?.startsWith("Bearer ")) {
+    const token = authHeader.split(" ")[1];
+    if (token) {
+      const { data } = await supabase.auth.getUser(token);
+      user = data?.user ?? null;
     }
+  } else {
+    // Fallback for browser calls using standard cookies
+    const { data } = await supabase.auth.getUser();
+    user = data?.user ?? null;
   }
 
   let dbUser: User | undefined;
@@ -59,12 +58,13 @@ export const createTRPCContext = async ({ headers }: ContextType) => {
   console.log("Logged user:", user?.id ?? "null", dbUser ?? "null");
 
   return {
-    user: user && dbUser
-      ? {
-          ...user,
-          db: dbUser,
-        }
-      : null,
+    user:
+      user && dbUser
+        ? {
+            ...user,
+            db: dbUser,
+          }
+        : null,
     supabase,
     db,
   };
