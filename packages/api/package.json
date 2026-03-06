@@ -46,6 +46,9 @@
     "superjson": "catalog:",
     "zod": "catalog:"
   },
+  "peerDependencies": {
+    "react-native": "catalog:"
+  },
   "devDependencies": {
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",

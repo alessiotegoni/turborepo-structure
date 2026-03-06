@@ -1,18 +1,15 @@
+import "~/app/styles.css";
+
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { TRPCReactProvider } from "@beeto/api/web/react";
+import { prefetch, trpc } from "@beeto/api/web/server";
 import { UserProvider } from "@beeto/auth/web";
 import { cn } from "@beeto/ui";
 import { ToastProvider } from "@beeto/ui/web";
 
 import { env } from "~/env";
-
-import "~/app/styles.css";
-
-import { skipToken } from "@tanstack/react-query";
-
-import { prefetch, trpc } from "@beeto/api/web/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -47,7 +44,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  prefetch(trpc.auth.getUser.queryOptions(skipToken, { retry: 1 }));
+  prefetch(trpc.auth.getUser.queryOptions());
 
   return (
     <html lang="en" suppressHydrationWarning>

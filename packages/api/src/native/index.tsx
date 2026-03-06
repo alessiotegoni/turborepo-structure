@@ -1,3 +1,4 @@
+import { Platform } from "react-native";
 import Constants from "expo-constants";
 import { QueryClient } from "@tanstack/react-query";
 import { createTRPCClient, httpBatchLink, loggerLink } from "@trpc/client";
@@ -5,13 +6,18 @@ import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
 
 import type { AppRouter } from "@beeto/api";
-import { createClient } from "@beeto/supabase/native";
+import { supabase } from "@beeto/supabase/native";
 
+/**
+ * Get the base URL for the API.
+ * In development, we try to detect the host IP to allow physical devices to connect.
+ */
 const getBaseUrl = () => {
   if (process.env.EXPO_PUBLIC_API_URL) {
     return process.env.EXPO_PUBLIC_API_URL;
   }
 
+  // Detect the host IP from Expo Constants (works with physical devices)
   const debuggerHost = Constants.expoConfig?.hostUri;
   const localhost = debuggerHost?.split(":")[0];
 
@@ -19,8 +25,12 @@ const getBaseUrl = () => {
     return `http://${localhost}:4000`;
   }
 
-  // Fallback for when hostUri is not available (e.g. production or development builds without it)
-  // In development, Android emulator uses 10.0.2.2, iOS simulator uses localhost
+  // Fallback for Android Emulator
+  if (Platform.OS === "android") {
+    return "http://10.0.2.2:4000";
+  }
+
+  // Fallback for iOS Simulator or when hostUri is unavailable
   return "http://localhost:4000";
 };
 
@@ -45,14 +55,14 @@ export const trpc = createTRPCOptionsProxy<AppRouter>({
         transformer: superjson,
         url: `${getBaseUrl()}/api/trpc`,
         async headers() {
-          const headers = new Map<string, string>();
+          const headers = new Headers();
           headers.set("x-trpc-source", "expo-react");
 
-          const supabase = createClient();
           const { data } = await supabase.auth.getSession();
           if (data.session) {
             headers.set("Authorization", `Bearer ${data.session.access_token}`);
           }
+
           return headers;
         },
       }),

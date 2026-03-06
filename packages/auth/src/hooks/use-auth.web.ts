@@ -3,8 +3,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useTRPC } from "@beeto/api/web/react";
-import { createClient } from "@beeto/supabase/client";
 import { toast } from "@beeto/ui/web";
+import { supabase } from "@beeto/supabase/client";
 
 interface UseAuthOptions {
   onSignIn?: () => void;
@@ -14,7 +14,6 @@ interface UseAuthOptions {
 export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
-  const supabase = createClient();
 
   const signInWithOtp = useMutation({
     ...trpc.auth.signInWithOtp.mutationOptions({

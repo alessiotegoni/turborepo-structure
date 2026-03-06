@@ -22,6 +22,7 @@
     "@beeto/features": "workspace:^",
     "@beeto/ui": "workspace:*",
     "@gorhom/bottom-sheet": "^5.2.8",
+    "react-native-mmkv": "catalog:",
     "@react-navigation/bottom-tabs": "^7.7.3",
     "@react-navigation/elements": "^2.8.1",
     "@react-navigation/native": "^7.1.28",

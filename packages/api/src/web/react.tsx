@@ -12,9 +12,9 @@ import { createTRPCContext } from "@trpc/tanstack-react-query";
 import SuperJSON from "superjson";
 
 import type { AppRouter } from "@beeto/api";
-import { createClient } from "@beeto/supabase/client";
 
 import { createQueryClient } from "./query-client";
+import { supabase } from "@beeto/supabase/client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -47,7 +47,6 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
             const headers = new Headers();
             headers.set("x-trpc-source", "nextjs-react");
 
-            const supabase = createClient();
             const { data } = await supabase.auth.getSession();
             console.log(data);
 

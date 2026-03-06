@@ -48,7 +48,10 @@ app.use(
   }),
 );
 
-app.listen(port, () => {
-  console.log(`🚀 Standalone backend started on http://localhost:${port}`);
-  console.log(`📡 tRPC endpoint at http://localhost:${port}/api/trpc`);
+app.listen(Number(port), "0.0.0.0", () => {
+  // Binding to 0.0.0.0 is required in development to allow physical mobile devices
+  // on the same network to connect to the server via the host machine's IP.
+  // In production, this server should be behind a Reverse Proxy (Nginx/LB) with HTTPS.
+  console.log(`🚀 Standalone backend started on http://0.0.0.0:${port}`);
+  console.log(`📡 tRPC endpoint at http://0.0.0.0:${port}/api/trpc`);
 });

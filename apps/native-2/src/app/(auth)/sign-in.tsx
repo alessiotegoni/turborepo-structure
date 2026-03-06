@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import { Text } from "react-native";
 import { SignInScreen } from "@beeto/auth/native";
 
 export default function SignIn() {
