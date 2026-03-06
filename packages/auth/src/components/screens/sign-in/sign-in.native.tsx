@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
-
 import { Button, Input } from "@beeto/ui/native";
-
 import { useAuth } from "../../../hooks/use-auth.native";
 
 interface SignInScreenProps {
@@ -26,7 +24,7 @@ export function SignInScreen({ onSignIn, onSignOut }: SignInScreenProps = {}) {
     if (!email || !token) return;
     await verifyOtp.mutateAsync({ email, token });
   };
-
+  
   return (
     <View className="bg-background flex-1 items-center justify-center p-6">
       <View className="bg-content1 w-full max-w-sm gap-4 rounded-xl p-6 shadow-md">

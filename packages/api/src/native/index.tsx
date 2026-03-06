@@ -7,8 +7,6 @@ import superjson from "superjson";
 import type { AppRouter } from "@beeto/api";
 import { createClient } from "@beeto/supabase/native";
 
-// import { getUser } from "@beeto/auth/native";
-
 const getBaseUrl = () => {
   if (process.env.EXPO_PUBLIC_API_URL) {
     return process.env.EXPO_PUBLIC_API_URL;
@@ -29,7 +27,7 @@ const getBaseUrl = () => {
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // ...
+      retry: 3,
     },
   },
 });

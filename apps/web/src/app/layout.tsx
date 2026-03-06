@@ -10,6 +10,8 @@ import { env } from "~/env";
 
 import "~/app/styles.css";
 
+import { skipToken } from "@tanstack/react-query";
+
 import { prefetch, trpc } from "@beeto/api/web/server";
 
 export const metadata: Metadata = {
@@ -45,7 +47,7 @@ const geistMono = Geist_Mono({
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
-  prefetch(trpc.auth.getUser.queryOptions());
+  prefetch(trpc.auth.getUser.queryOptions(skipToken, { retry: 1 }));
 
   return (
     <html lang="en" suppressHydrationWarning>

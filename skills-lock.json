@@ -20,6 +20,11 @@
       "source": "vercel/turborepo",
       "sourceType": "github",
       "computedHash": "05f8c9c6a5e8574cc64981eb77041a3b25d16ead0985d384b6e20d3556ddbd88"
+    },
+    "uniwind": {
+      "source": "uni-stack/uniwind",
+      "sourceType": "github",
+      "computedHash": "bc1f10eb442df6fc4794865bc961fee0455261672159081084b904c5ba6c8cee"
     }
   }
 }
