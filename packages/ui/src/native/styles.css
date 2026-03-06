@@ -1,9 +1,39 @@
 @import "tailwindcss";
 @import "uniwind";
+
+/* Importiamo prima gli stili base di heroui-native */
+@import "heroui-native/styles";
+
+/* Poi il tema custom (che vincerà sugli stili base) */
 @import "@beeto/tailwind-config/theme";
 
-/* Importiamo gli stili base di heroui-native */
-@import "heroui-native/styles";
+/*
+  Mapping delle variabili di HeroUI Native al nostro tema globale.
+
+  HeroUI Native (attualmente in beta) mappa internamente:
+  - La variante "primary" sulla variabile --accent
+  - La variante "secondary" sulla variabile --default
+
+  Il nostro tema utilizza invece --primary e --secondary (standard Tailwind/Shadcn).
+  Mappando queste variabili qui, assicuriamo che i componenti heroui-native
+  seguano i colori custom definiti in @beeto/tailwind-config/theme.
+*/
+@layer theme {
+  :root {
+    --color-accent: var(--primary);
+    --color-accent-foreground: var(--primary-foreground);
+    --color-default: var(--secondary);
+    --color-default-foreground: var(--secondary-foreground);
+
+    /*
+       Impostiamo i colori di hover (click) uguali ai colori base.
+       Questo "disabilita" visivamente il cambio di colore durante la pressione
+       senza mandare in crash Reanimated (che non accetta "transparent" o valori non risolti).
+    */
+    --color-accent-hover: var(--primary);
+    --color-default-hover: var(--secondary);
+  }
+}
 
 /* Tailwind scansiona i componenti pre-compilati di heroui-native */
 @source "../../../../node_modules/heroui-native/lib";
