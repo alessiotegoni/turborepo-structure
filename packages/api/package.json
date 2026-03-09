@@ -30,26 +30,42 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@beeto/db": "workspace:*",
     "@beeto/email": "workspace:*",
     "@beeto/features": "workspace:*",
     "@beeto/payments": "workspace:*",
+    "expo-constants": "catalog:",
+    "superjson": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
     "@beeto/supabase": "workspace:*",
+    "@beeto/db": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/react-query": "catalog:",
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
-    "expo-constants": "catalog:",
-    "next": "catalog:",
     "react": "catalog:react19",
-    "superjson": "catalog:",
-    "zod": "catalog:"
+    "next": "catalog:"
   },
-  "peerDependencies": {
-    "react-native": "catalog:"
+  "peerDependenciesMeta": {
+    "@beeto/db": {
+      "optional": true
+    },
+    "next": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@beeto/supabase": "workspace:*",
+    "@beeto/db": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "@trpc/client": "catalog:",
+    "@trpc/react-query": "catalog:",
+    "@trpc/server": "catalog:",
+    "@trpc/tanstack-react-query": "catalog:",
+    "react": "catalog:react19",
+    "next": "catalog:",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

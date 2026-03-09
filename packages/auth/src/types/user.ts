@@ -1,6 +1,5 @@
 import type { User as SupabaseUser } from "@supabase/supabase-js";
-
-import { User as DBUser } from "@beeto/db/schema";
+import type { User as DBUser } from "@beeto/db/schema";
 
 export type User = SupabaseUser & { db: DBUser };
 

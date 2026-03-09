@@ -14,7 +14,7 @@ export default function Index() {
           <Card.Header>
             <Text className="text-primary">Beeto</Text>
             <Link href="/(public)/events">Vedi eventi</Link>
-            <Link href="/(auth)/sign-in">Vedi signin</Link>
+            <Link href="/(auth)/send-otp">Vedi signin</Link>
           </Card.Header>
           <Card.Body>
             <Card.Title>Title</Card.Title>

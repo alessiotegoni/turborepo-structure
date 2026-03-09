@@ -28,18 +28,28 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "drizzle-zod": "catalog:",
+    "zod": "catalog:"
+  },
+  "peerDependencies": {
+    "@beeto/api": "workspace:*",
     "@beeto/auth": "workspace:*",
     "@beeto/db": "workspace:*",
     "@beeto/ui": "workspace:*",
     "@tanstack/react-query": "catalog:",
-    "drizzle-zod": "catalog:",
-    "react": "catalog:react19",
-    "zod": "catalog:"
+    "react": "catalog:react19"
   },
-  "peerDependencies": {
-    "@beeto/api": "workspace:*"
+  "peerDependenciesMeta": {
+    "@beeto/db": {
+      "optional": true
+    }
   },
   "devDependencies": {
+    "@beeto/auth": "workspace:*",
+    "@beeto/db": "workspace:*",
+    "@beeto/ui": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "react": "catalog:react19",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

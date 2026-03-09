@@ -41,20 +41,20 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@beeto/db": "workspace:*",
-    "@beeto/supabase": "workspace:*",
-    "@beeto/ui": "workspace:*",
-    "@supabase/ssr": "catalog:",
-    "@supabase/supabase-js": "catalog:",
-    "@t3-oss/env-core": "catalog:",
-    "@tanstack/react-query": "catalog:",
-    "react": "catalog:react19",
-    "zod": "catalog:"
+    "@t3-oss/env-core": "catalog:"
   },
   "peerDependencies": {
-    "@beeto/api": "workspace:*"
+    "@beeto/supabase": "workspace:*",
+    "@supabase/supabase-js": "catalog:",
+    "@beeto/ui": "workspace:*",
+    "@beeto/api": "workspace:*",
+    "@tanstack/react-query": "catalog:",
+    "react": "catalog:react19",
+    "react-native-mmkv": "catalog:",
+    "react-native": "catalog:"
   },
   "devDependencies": {
+    "@beeto/db": "workspace:*",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

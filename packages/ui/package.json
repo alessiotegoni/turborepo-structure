@@ -4,10 +4,14 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./web": "./src/web/index.ts",
-    "./web/styles": "./src/web/styles.css",
     "./native": "./src/native/index.ts",
-    "./native/styles": "./src/native/styles.css"
+    "./native/components": {
+      "types": "./src/native/components/index.ts",
+      "default": "./src/native/components/index.ts"
+    },
+    "./native/styles": "./src/native/styles.css",
+    "./web": "./src/web/index.ts",
+    "./web/styles": "./src/web/styles.css"
   },
   "license": "MIT",
   "scripts": {
@@ -37,11 +41,13 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "react": "catalog:react19",
-    "typescript": "catalog:",
-    "zod": "catalog:"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
+    "@tanstack/react-query": "catalog:",
+    "react-native-reanimated": "catalog:",
     "react": "catalog:react19",
+    "react-native": "catalog:",
     "zod": "catalog:"
   },
   "prettier": "@beeto/prettier-config"

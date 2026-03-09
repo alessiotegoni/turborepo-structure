@@ -36,16 +36,23 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@supabase/ssr": "catalog:",
-    "@supabase/supabase-js": "catalog:",
     "@t3-oss/env-core": "catalog:",
-    "react-native-mmkv": "catalog:",
-    "expo-secure-store": "catalog:",
     "zod": "catalog:",
     "aes-js": "latest",
     "react-native-get-random-values": "latest"
   },
+  "peerDependencies": {
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "react-native-mmkv": "catalog:",
+    "expo-secure-store": "catalog:"
+  },
   "devDependencies": {
+    "@supabase/ssr": "catalog:",
+    "@supabase/supabase-js": "catalog:",
+    "react-native-mmkv": "catalog:",
+    "expo-secure-store": "catalog:",
+    "react-native-get-random-values": "latest",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

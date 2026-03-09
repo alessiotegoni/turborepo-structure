@@ -92,14 +92,18 @@ Il modo migliore per installare un pacchetto mirato, senza doversi muovere con i
 Vogliamo aggiungere `date-fns` al nostro pacchetto condiviso `@beeto/features`.
 
 1. Aggiungila prima al catalog in `pnpm-workspace.yaml`:
+
    ```yaml
    catalog:
      date-fns: ^3.0.0
    ```
+
 2. Esegui il comando di installazione col filtro `-F`:
+
    ```bash
    pnpm add date-fns -F @beeto/features
    ```
+
    _Nota Magica: pnpm capirà in automatico che hai definito `date-fns` nel catalog e inserirà nel `package.json` locale la dicitura pulita `"date-fns": "catalog:"`._
 
 #### Esempio: importare un nostro pacchetto interno in un'App
@@ -134,6 +138,63 @@ Per farlo, usiamo il campo `"exports"` nel `packages/<nome-pacchetto>/package.js
 > [!WARNING]
 > **Errore "Cannot find module"**
 > Se ti dimentichi di aggiungere il file agli `"exports"`, TypeScript e i bundler (Next.js, Metro) genereranno l'errore: `Cannot find module '@beeto/auth/native'`. Questo accade perché i file non dichiarati in `"exports"` sono considerati **privati** e invisibili dall'esterno del pacchetto.
+
+## Le PeerDependencies: Dipendenze Obbligatorie ed Esterne 🤝
+
+Quando sviluppiamo pacchetti condivisi (specialmente in `@beeto/ui`), capita di aver bisogno di librerie che devono esistere in una **singola istanza** in tutta l'applicazione (pattern Singleton) o che dipendono strettamente dal runtime dell'app finale.
+
+Esempi tipici: `react`, `react-native`, `@tanstack/react-query`, `react-native-reanimated`.
+
+Per queste librerie usiamo le **`peerDependencies`**.
+
+### Cosa sono e perché si usano?
+
+Le `peerDependencies` dicono: _"Io (pacchetto) ho bisogno di questa libreria per funzionare, ma non la installerò per conto mio. Spetta a te (applicazione finale) fornirmela"_.
+
+Questo è fondamentale per:
+
+- **Evitare conflitti:** Se sia `@beeto/ui` che `apps/native` avessero la loro versione di `react-query` installata in `dependencies`, l'app caricherebbe due istanze della libreria, rompendo la cache e lo stato globale.
+- **Ridurre il bundle size:** Evitiamo di duplicare codice pesante.
+
+### Come configurarle correttamente?
+
+1. **Dichiarazione nel pacchetto:** In `packages/ui/package.json`, inserisci la libreria sotto `peerDependencies` (usando il catalogo o una versione specifica).
+
+   ```json
+   "peerDependencies": {
+     "@tanstack/react-query": "catalog:",
+     "react-native-reanimated": "catalog:"
+   }
+   ```
+
+2. **Sviluppo locale:** Per avere il supporto di TypeScript mentre scrivi il codice nel pacchetto, aggiungi la stessa libreria anche in `devDependencies`.
+3. **Installazione nell'App:** L'app finale (`apps/web` o `apps/native`) **deve** avere queste librerie tra le sue `dependencies` principali.
+
+> [!TIP]
+> Se vedi un warning di pnpm durante l'installazione che dice _"missing peer dependency x"_, significa che il pacchetto che stai aggiungendo ha bisogno di una libreria che non hai ancora installato nell'app principale.
+
+### Quando usare cosa? (Esempi Pratici) 💡
+
+Non è sempre ovvio quale tipo di dipendenza scegliere. Ecco una guida rapida basata su scenari reali:
+
+| Tipo di Libreria            | Dove metterla?     | Ragione Principale                                                                                      | Esempio                                                  |
+| :-------------------------- | :----------------- | :------------------------------------------------------------------------------------------------------ | :------------------------------------------------------- |
+| **State Managers (Shared)** | `peerDependencies` | Devono condividere lo stesso store/cache globale. Se duplicate, i dati non si sincronizzano.            | `@tanstack/react-query`, `Redux`                         |
+| **UI Frameworks**           | `peerDependencies` | Evita l'errore "Multiple instances of React".                                                           | `react`, `react-native`                                  |
+| **Singleton Clients**       | `peerDependencies` | Devono usare la stessa connessione o sessione utente.                                                   | `@beeto/supabase`, `@supabase/supabase-js`, `@beeto/api` |
+| **Moduli Nativi**           | `peerDependencies` | Il codice nativo (C++/Java/Swift) deve essere compilato nell'App principale per funzionare.             | `react-native-mmkv`, `expo-secure-store`                 |
+| **Utility Pure**            | `dependencies`     | Sono funzioni senza stato. Se duplicate, il pacchetto occupa solo un po' più di spazio ma non si rompe. | `zod`, `dayjs`, `lodash`, `@t3-oss/env-core`             |
+| **Solo Tipi (TypeScript)**  | `devDependencies`  | Servono solo a TypeScript per il controllo statico. Non esistono più quando il codice viene eseguito.   | `@types/node`, `@beeto/db` (se importi solo tipi)        |
+
+#### Esempio: Il caso @beeto/db
+
+Se in un pacchetto (es. `@beeto/auth`) importi solo i tipi dal database per definire un'interfaccia:
+
+```typescript
+import type { User } from "@beeto/db/schema"; // <-- Solo tipi!
+```
+
+In questo caso, `@beeto/db` può stare in **`devDependencies`**. Questo evita che il codice del database (pesante e non funzionante su mobile) venga scaricato inutilmente dall'app mobile durante l'installazione delle dipendenze a runtime.
 
 ## Recap Operativo per il Dev Team 📌
 
