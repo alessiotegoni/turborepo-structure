@@ -1,15 +1,5 @@
-"use client";
+import { SignInPage } from "~/features/auth/components/SignInPage";
 
-import { useRouter } from "next/navigation";
-
-import { SignInScreen } from "@beeto/auth/web";
-
-export default function SignInPage() {
-  const router = useRouter();
-  return (
-    <SignInScreen
-      onSignIn={() => router.push("/events")}
-      onSignOut={() => router.push("/sign-in")}
-    />
-  );
+export default function SignPage() {
+  return <SignInPage />;
 }

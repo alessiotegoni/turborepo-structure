@@ -23,11 +23,13 @@
     "typecheck": "turbo run typecheck",
     "ui-add": "turbo run ui-add",
     "android": "pnpm -F @beeto/native android",
-    "ios": "pnpm -F @beeto/native ios"
+    "ios": "pnpm -F @beeto/native ios",
+    "sync-exports": "node tooling/scripts/sync-exports.js"
   },
   "devDependencies": {
     "@beeto/prettier-config": "workspace:*",
     "@turbo/gen": "^2.5.8",
+    "baseline-browser-mapping": "latest",
     "dotenv-cli": "^10.0.0",
     "prettier": "catalog:",
     "turbo": "^2.5.8",

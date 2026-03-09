@@ -3,13 +3,25 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./web": {
-      "types": "./src/web.ts",
-      "default": "./src/web.ts"
+    "./types": {
+      "types": "./src/types/index.ts",
+      "default": "./src/types/index.ts"
     },
-    "./native": {
-      "types": "./src/native.ts",
-      "default": "./src/native.ts"
+    "./web/hooks": {
+      "types": "./src/web/hooks/index.ts",
+      "default": "./src/web/hooks/index.ts"
+    },
+    "./web/providers": {
+      "types": "./src/web/providers/index.ts",
+      "default": "./src/web/providers/index.ts"
+    },
+    "./native/hooks": {
+      "types": "./src/native/hooks/index.ts",
+      "default": "./src/native/hooks/index.ts"
+    },
+    "./native/providers": {
+      "types": "./src/native/providers/index.ts",
+      "default": "./src/native/providers/index.ts"
     },
     "./server": {
       "types": "./src/server.ts",

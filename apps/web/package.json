@@ -41,7 +41,6 @@
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
     "eslint": "catalog:",
-    "jiti": "^2.5.1",
     "prettier": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"

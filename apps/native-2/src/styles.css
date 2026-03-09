@@ -1,4 +1,0 @@
-@import "@beeto/ui/native/styles";
-
-@source "../../../packages/auth/src/**/*.{ts,tsx}";
-@source "../../../packages/features/src/**/*.{ts,tsx}";

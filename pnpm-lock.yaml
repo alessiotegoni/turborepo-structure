@@ -71,7 +71,7 @@ catalogs:
       version: 55.0.8
     heroui-native:
       specifier: latest
-      version: 1.0.0-rc.3
+      version: 1.0.0-rc.4
     next:
       specifier: ^16.0.9
       version: 16.0.10
@@ -137,6 +137,9 @@ importers:
       '@turbo/gen':
         specifier: ^2.5.8
         version: 2.5.8(@types/node@24.9.1)(typescript@5.9.3)
+      baseline-browser-mapping:
+        specifier: latest
+        version: 2.10.0
       dotenv-cli:
         specifier: ^10.0.0
         version: 10.0.0
@@ -150,7 +153,7 @@ importers:
         specifier: 'catalog:'
         version: 5.9.3
 
-  apps/native-2:
+  apps/native:
     dependencies:
       '@beeto/auth':
         specifier: workspace:^
@@ -431,9 +434,6 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 9.38.0(jiti@2.6.1)
-      jiti:
-        specifier: ^2.5.1
-        version: 2.6.1
       prettier:
         specifier: 'catalog:'
         version: 3.6.2
@@ -821,10 +821,10 @@ importers:
         version: 0.7.1
       framer-motion:
         specifier: latest
-        version: 12.35.0(react-dom@19.2.4(react@19.2.0))(react@19.2.0)
+        version: 12.35.2(react-dom@19.2.4(react@19.2.0))(react@19.2.0)
       heroui-native:
         specifier: 'catalog:'
-        version: 1.0.0-rc.3(2306290d3ae4d4487dbb1971ccdf6bf0)
+        version: 1.0.0-rc.4(2306290d3ae4d4487dbb1971ccdf6bf0)
       tailwind-merge:
         specifier: 'catalog:'
         version: 3.5.0
@@ -5060,8 +5060,9 @@ packages:
     resolution: {integrity: sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==}
     engines: {node: ^4.5.0 || >= 5.9}
 
-  baseline-browser-mapping@2.8.16:
-    resolution: {integrity: sha512-OMu3BGQ4E7P1ErFsIPpbJh0qvDudM/UuJeHgkAvfWe+0HFJCXh+t/l8L6fVLR55RI/UbKrVLnAXZSVwd9ysWYw==}
+  baseline-browser-mapping@2.10.0:
+    resolution: {integrity: sha512-lIyg0szRfYbiy67j9KN8IyeD7q7hcmqnJ1ddWmNt19ItGpNN64mnllmxUNFIOdOm6by97jlL6wfpTTJrmnjWAA==}
+    engines: {node: '>=6.0.0'}
     hasBin: true
 
   basic-ftp@5.0.5:
@@ -6271,8 +6272,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  framer-motion@12.35.0:
-    resolution: {integrity: sha512-w8hghCMQ4oq10j6aZh3U2yeEQv5K69O/seDI/41PK4HtgkLrcBovUNc0ayBC3UyyU7V1mrY2yLzvYdWJX9pGZQ==}
+  framer-motion@12.35.2:
+    resolution: {integrity: sha512-dhfuEMaNo0hc+AEqyHiIfiJRNb9U9UQutE9FoKm5pjf7CMitp9xPEF1iWZihR1q86LBmo6EJ7S8cN8QXEy49AA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -6479,8 +6480,8 @@ packages:
   hermes-parser@0.32.0:
     resolution: {integrity: sha512-g4nBOWFpuiTqjR3LZdRxKUkij9iyveWeuks7INEsMX741f3r9xxrOe8TeQfUxtda0eXmiIFiMQzoeSQEno33Hw==}
 
-  heroui-native@1.0.0-rc.3:
-    resolution: {integrity: sha512-UjQCUrNjpuWJva8rmqxB9rUw3Man/el4hYJVIMc5zLazEQU3gw22yGUSPvNcque96PUtdeKKngQnkjJytcbRpw==}
+  heroui-native@1.0.0-rc.4:
+    resolution: {integrity: sha512-jufoDSZiPGlxpnUxprzuc62ylnRwHcZc84vglE1HhUIZAkFsq17QVpmPUwqt8jTcJcP8s+/GNRYqgX6B0X8/3A==}
     peerDependencies:
       '@gorhom/bottom-sheet': ^5.2.8
       react: '>=19.0.0'
@@ -7233,8 +7234,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  motion-dom@12.35.0:
-    resolution: {integrity: sha512-FFMLEnIejK/zDABn+vqGVAUN4T0+3fw+cVAY8MMT65yR+j5uMuvWdd4npACWhh94OVWQs79CrBBuwOwGRZAQiA==}
+  motion-dom@12.35.2:
+    resolution: {integrity: sha512-pWXFMTwvGDbx1Fe9YL5HZebv2NhvGBzRtiNUv58aoK7+XrsuaydQ0JGRKK2r+bTKlwgSWwWxHbP5249Qr/BNpg==}
 
   motion-utils@12.29.2:
     resolution: {integrity: sha512-G3kc34H2cX2gI63RqU+cZq+zWRRPSsNIOjpdl9TN4AQwC4sgwYPl/Q/Obf/d53nOm569T0fYK+tcoSV50BWx8A==}
@@ -12354,7 +12355,7 @@ snapshots:
       debug: 4.4.3
       invariant: 2.2.4
       metro: 0.83.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
-      metro-config: 0.83.3(bufferutil@4.0.8)
+      metro-config: 0.83.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       metro-core: 0.83.3
       semver: 7.7.3
     transitivePeerDependencies:
@@ -14180,7 +14181,7 @@ snapshots:
 
   base64id@2.0.0: {}
 
-  baseline-browser-mapping@2.8.16: {}
+  baseline-browser-mapping@2.10.0: {}
 
   basic-ftp@5.0.5: {}
 
@@ -14260,7 +14261,7 @@ snapshots:
 
   browserslist@4.26.3:
     dependencies:
-      baseline-browser-mapping: 2.8.16
+      baseline-browser-mapping: 2.10.0
       caniuse-lite: 1.0.30001749
       electron-to-chromium: 1.5.234
       node-releases: 2.0.23
@@ -15775,9 +15776,9 @@ snapshots:
 
   forwarded@0.2.0: {}
 
-  framer-motion@12.35.0(react-dom@19.2.4(react@19.2.0))(react@19.2.0):
+  framer-motion@12.35.2(react-dom@19.2.4(react@19.2.0))(react@19.2.0):
     dependencies:
-      motion-dom: 12.35.0
+      motion-dom: 12.35.2
       motion-utils: 12.29.2
       tslib: 2.8.1
     optionalDependencies:
@@ -16003,7 +16004,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.32.0
 
-  heroui-native@1.0.0-rc.3(2306290d3ae4d4487dbb1971ccdf6bf0):
+  heroui-native@1.0.0-rc.4(2306290d3ae4d4487dbb1971ccdf6bf0):
     dependencies:
       '@gorhom/bottom-sheet': 5.2.8(@types/react@19.2.14)(react-native-gesture-handler@2.30.0(react-native@0.83.2(@babel/core@7.28.5)(@types/react@19.2.14)(bufferutil@4.0.8)(react@19.2.0))(react@19.2.0))(react-native-reanimated@4.2.2(react-native-worklets@0.7.4(@babel/core@7.28.5)(react-native@0.83.2(@babel/core@7.28.5)(@types/react@19.2.14)(bufferutil@4.0.8)(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.28.5)(@types/react@19.2.14)(bufferutil@4.0.8)(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.28.5)(@types/react@19.2.14)(bufferutil@4.0.8)(react@19.2.0))(react@19.2.0)
       react: 19.2.0
@@ -16695,6 +16696,21 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  metro-config@0.83.3(bufferutil@4.0.8)(utf-8-validate@6.0.4):
+    dependencies:
+      connect: 3.7.0
+      flow-enums-runtime: 0.0.6
+      jest-validate: 29.7.0
+      metro: 0.83.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
+      metro-cache: 0.83.3
+      metro-core: 0.83.3
+      metro-runtime: 0.83.3
+      yaml: 2.8.1
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
   metro-core@0.83.3:
     dependencies:
       flow-enums-runtime: 0.0.6
@@ -16879,7 +16895,7 @@ snapshots:
       metro-babel-transformer: 0.83.3
       metro-cache: 0.83.3
       metro-cache-key: 0.83.3
-      metro-config: 0.83.3(bufferutil@4.0.8)
+      metro-config: 0.83.3(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       metro-core: 0.83.3
       metro-file-map: 0.83.3
       metro-resolver: 0.83.3
@@ -16947,7 +16963,7 @@ snapshots:
 
   mkdirp@1.0.4: {}
 
-  motion-dom@12.35.0:
+  motion-dom@12.35.2:
     dependencies:
       motion-utils: 12.29.2
 

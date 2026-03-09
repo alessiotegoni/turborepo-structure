@@ -7,7 +7,7 @@ import {
   getEventById,
   getEvents,
 } from "@beeto/db/queries/events";
-import { insertEventSchema } from "@beeto/features/events";
+import { insertEventSchema } from "@beeto/features/events/validators";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 

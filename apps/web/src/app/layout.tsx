@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { TRPCReactProvider } from "@beeto/api/web/react";
 import { prefetch, trpc } from "@beeto/api/web/server";
-import { UserProvider } from "@beeto/auth/web";
+import { UserProvider } from "@beeto/auth/web/providers";
 import { cn } from "@beeto/ui";
 import { ToastProvider } from "@beeto/ui/web";
 

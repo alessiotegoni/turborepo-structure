@@ -3,17 +3,17 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./events": {
-      "types": "./src/events/index.ts",
-      "default": "./src/events/index.ts"
+    "./events/validators": {
+      "types": "./src/events/validators/index.ts",
+      "default": "./src/events/validators/index.ts"
     },
-    "./events/web": {
-      "types": "./src/events/web.ts",
-      "default": "./src/events/web.ts"
+    "./events/web/hooks": {
+      "types": "./src/events/web/hooks/index.ts",
+      "default": "./src/events/web/hooks/index.ts"
     },
-    "./events/native": {
-      "types": "./src/events/native.ts",
-      "default": "./src/events/native.ts"
+    "./events/native/hooks": {
+      "types": "./src/events/native/hooks/index.ts",
+      "default": "./src/events/native/hooks/index.ts"
     },
     "./users": {
       "types": "./src/users/index.ts",
