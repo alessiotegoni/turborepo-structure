@@ -1,15 +1,17 @@
 import type { TRPCRouterRecord } from "@trpc/server";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createUser, getUserByEmail } from "@beeto/db/queries/users";
 import { sendAuthEmail } from "@beeto/email";
 import { createAdminClient } from "@beeto/supabase/admin";
 
+import { createSuccess } from "../helpers";
 import { publicProcedure } from "../trpc";
 
 export const authRouter = {
   signInWithOtp: publicProcedure
-    .input(z.object({ email: z.email() }))
+    .input(z.object({ email: z.email("Email non valida") }))
     .mutation(async ({ input, ctx }) => {
       // 1. Generate link & OTP from Supabase via admin client
       const supabase = createAdminClient();
@@ -20,8 +22,12 @@ export const authRouter = {
 
       if (error) {
         console.error("Error generating magic link:", error);
-        throw error;
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Errore durante la generazione del link di accesso",
+        });
       }
+
       // 2. Send custom email wrapper
       if (data.properties?.action_link) {
         const sendResult = await sendAuthEmail({
@@ -32,11 +38,17 @@ export const authRouter = {
         });
 
         if (!sendResult.success) {
-          throw new Error("Impossibile inviare l'email di autenticazione");
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "Impossibile inviare l'email di autenticazione",
+          });
         }
       }
 
-      return { success: true };
+      return createSuccess(
+        null,
+        "Email di autenticazione inviata correttamente",
+      );
     }),
 
   verifyOtp: publicProcedure
@@ -50,8 +62,12 @@ export const authRouter = {
         type: user ? "magiclink" : "signup",
       });
 
-      if (error) throw error;
-      if (!data.user?.id) throw new Error("User not found");
+      if (!data.user || error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Codice non valido o scaduto",
+        });
+      }
 
       if (!user) {
         await createUser({
@@ -60,7 +76,7 @@ export const authRouter = {
         });
       }
 
-      return data;
+      return createSuccess(data, "Codice verificato con successo!");
     }),
 
   getUser: publicProcedure.query(({ ctx }) => {

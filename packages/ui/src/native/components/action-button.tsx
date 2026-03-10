@@ -1,5 +1,6 @@
 import type { MutationOptions } from "@tanstack/react-query";
 import type { ButtonRootProps } from "heroui-native";
+import { useEffect, useEffectEvent } from "react";
 import { Alert } from "react-native";
 import Animated, {
   FadeIn,
@@ -9,14 +10,15 @@ import Animated, {
 import { useMutation } from "@tanstack/react-query";
 import { Button, Spinner, useToast } from "heroui-native";
 
+import type { SuccessResponse } from "@beeto/api/helpers";
+
 type ActionButtonProps<
-  TData = unknown,
-  TError = Error,
-  TVariables = void,
+  TData extends SuccessResponse<unknown>,
+  TError extends { message: string },
+  TVariables,
 > = ButtonRootProps & {
   mutationOptions: MutationOptions<TData, TError, TVariables>;
   variables?: TVariables;
-  successMessage: string;
   loadingText?: string;
   requireAreYouSure?: boolean;
   areYouSureTitle?: string;
@@ -25,13 +27,12 @@ type ActionButtonProps<
 };
 
 export function ActionButton<
-  TData = unknown,
-  TError = Error,
-  TVariables = void,
+  TData extends SuccessResponse<unknown>,
+  TError extends { message: string },
+  TVariables,
 >({
   mutationOptions,
   variables,
-  successMessage = "Operazione effettuata con successo",
   loadingText = "Caricamento",
   requireAreYouSure = false,
   areYouSureTitle = "Sei sicuro?",
@@ -44,30 +45,38 @@ export function ActionButton<
 }: ActionButtonProps<TData, TError, TVariables>) {
   const { toast } = useToast();
 
-  const { isPending, mutateAsync } = useMutation(mutationOptions);
+  const { isPending, mutateAsync, isSuccess, data, isError, error } =
+    useMutation(mutationOptions);
 
-  async function performAction() {
-    try {
-      await mutateAsync(variables as TVariables);
-      if (displayToast) {
-        toast.show({
-          variant: "success",
-          label: successMessage,
-          actionLabel: "Chiudi",
-          onActionPress: ({ hide }) => hide(),
-        });
-      }
-    } catch (error: any) {
-      if (displayToast) {
-        toast.show({
-          variant: "danger",
-          label: error.message || "Si è verificato un errore",
-          actionLabel: "Chiudi",
-          onActionPress: ({ hide }) => hide(),
-        });
-      }
-    }
-  }
+  const onSuccess = useEffectEvent((data: TData) => {
+    if (!displayToast) return;
+    toast.show({
+      variant: "success",
+      label: data.message,
+      actionLabel: "Chiudi",
+      onActionPress: ({ hide }) => hide(),
+    });
+  });
+
+  const onError = useEffectEvent((error: TError) => {
+    if (!displayToast) return;
+    toast.show({
+      variant: "danger",
+      label: error.message,
+      actionLabel: "Chiudi",
+      onActionPress: ({ hide }) => hide(),
+    });
+  });
+
+  useEffect(() => {
+    if (isSuccess) onSuccess(data);
+  }, [data]);
+
+  useEffect(() => {
+    if (isError) onError(error);
+  }, [error]);
+
+  const performAction = () => mutateAsync(variables as TVariables);
 
   function handlePress() {
     if (!requireAreYouSure) {

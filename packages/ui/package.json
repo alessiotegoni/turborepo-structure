@@ -33,6 +33,7 @@
     "uniwind": "latest"
   },
   "devDependencies": {
+    "@beeto/api": "workspace:^",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tailwind-config": "workspace:*",
@@ -45,9 +46,9 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "catalog:",
-    "react-native-reanimated": "catalog:",
     "react": "catalog:react19",
     "react-native": "catalog:",
+    "react-native-reanimated": "catalog:",
     "zod": "catalog:"
   },
   "prettier": "@beeto/prettier-config"

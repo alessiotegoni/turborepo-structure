@@ -40,7 +40,6 @@ export function VerifyOtpScreen() {
           <ActionButton
             mutationOptions={verifyOtpOptions}
             variables={{ email, token }}
-            successMessage="Login effettuato con successo!"
           >
             <Button.Label>Verifica codice</Button.Label>
           </ActionButton>

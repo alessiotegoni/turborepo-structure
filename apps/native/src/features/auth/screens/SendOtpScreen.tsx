@@ -31,7 +31,6 @@ export function SendOtpScreen() {
           <ActionButton
             mutationOptions={sendOtpOptions}
             variables={{ email }}
-            successMessage="Codice inviato!"
           >
             <Button.Label>Invia Codice</Button.Label>
           </ActionButton>

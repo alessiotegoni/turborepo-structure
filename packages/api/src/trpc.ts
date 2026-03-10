@@ -73,16 +73,33 @@ export const createTRPCContext = async ({ headers }: ContextType) => {
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
-  errorFormatter: ({ shape, error }) => ({
-    ...shape,
-    data: {
-      ...shape.data,
-      zodError:
+  /**
+   * L'errorFormatter formatta l'errore prima di spedirlo al frontend.
+   * - 'error': l'errore originale (tecnico) avvenuto sul server.
+   * - 'shape': l'oggetto JSON finale che il client riceverà effettivamente.
+   * Qui modifichiamo la 'shape' per mostrare messaggi leggibili all'utente.
+   */
+  errorFormatter: ({ shape, error }) => {
+    return {
+      ...shape,
+      message:
         error.cause instanceof ZodError
-          ? z.flattenError(error.cause as ZodError<Record<string, unknown>>)
-          : null,
-    },
-  }),
+          ? error.cause.issues
+              .map((issue) => {
+                const path = issue.path.join(".");
+                return path ? `${path}: ${issue.message}` : issue.message;
+              })
+              .join("; ")
+          : shape.message,
+      data: {
+        ...shape.data,
+        zodError:
+          error.cause instanceof ZodError
+            ? z.flattenError(error.cause as ZodError<Record<string, unknown>>)
+            : null,
+      },
+    };
+  },
 });
 
 /**
@@ -100,9 +117,6 @@ export const createTRPCRouter = t.router;
 
 /**
  * Middleware for timing procedure execution and adding an articifial delay in development.
- *
- * You can remove this if you don't like it, but it can help catch unwanted waterfalls by simulating
- * network latency that would occur in production but not in local development.
  */
 const timingMiddleware = t.middleware(async ({ next, path }) => {
   const start = Date.now();
