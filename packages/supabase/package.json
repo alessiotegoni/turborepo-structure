@@ -56,6 +56,7 @@
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",
+    "@expo/metro-runtime": "catalog:",
     "@types/node": "catalog:",
     "@types/aes-js": "latest",
     "eslint": "catalog:",

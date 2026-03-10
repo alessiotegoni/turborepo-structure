@@ -1,1 +1,1 @@
-export * from "./ActionButton";
+export * from "./action-button";

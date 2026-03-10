@@ -8,6 +8,9 @@ export function UIProvider({ children }: { children: React.ReactNode }) {
 }
 
 const config: HeroUINativeConfig = {
+  devInfo: {
+    stylingPrinciples: false,
+  },
   toast: {
     // Global toast configuration (used as defaults for all toasts)
     defaultProps: {

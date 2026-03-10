@@ -18,6 +18,30 @@
   Mappando queste variabili qui, assicuriamo che i componenti heroui-native
   seguano i colori custom definiti in @beeto/tailwind-config/theme.
 */
+
+@theme {
+  --font-urbanist: "Urbanist_400Regular";
+
+  --font-normal: "Urbanist_400Regular";
+  --font-medium: "Urbanist_500Medium";
+  --font-semibold: "Urbanist_600SemiBold";
+  --font-bold: "Urbanist_700Bold";
+  --font-extra-bold: "Urbanist_800ExtraBold";
+
+  --font-urbanist-light: "Urbanist_300Light";
+  --font-urbanist-regular: "Urbanist_400Regular";
+  --font-urbanist-medium: "Urbanist_500Medium";
+  --font-urbanist-semibold: "Urbanist_600SemiBold";
+  --font-urbanist-bold: "Urbanist_700Bold";
+  --font-urbanist-extra-bold: "Urbanist_800ExtraBold";
+}
+
+@layer base {
+  Text {
+    font-family: "Urbanist_400Regular";
+  }
+}
+
 @layer theme {
   :root {
     --color-accent: var(--primary);

@@ -48,7 +48,7 @@ export function EventListPage() {
         {events?.map((e) => (
           <div
             key={e.id}
-            className="bg-content1 flex items-center justify-between rounded-lg p-4 shadow-sm"
+            className="bg-content flex items-center justify-between rounded-lg p-4 shadow-sm"
           >
             <div>
               <h2 className="text-xl font-bold">{e.title}</h2>

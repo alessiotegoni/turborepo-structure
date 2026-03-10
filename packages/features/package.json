@@ -57,6 +57,7 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "react-native": "catalog:",
+    "utf-8-validate": "catalog:",
     "typescript": "catalog:"
   },
   "prettier": "@beeto/prettier-config"

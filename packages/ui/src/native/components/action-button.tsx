@@ -15,7 +15,7 @@ type ActionButtonProps<
   TVariables = void,
 > = ButtonRootProps & {
   mutationOptions: MutationOptions<TData, TError, TVariables>;
-  data?: TVariables;
+  variables?: TVariables;
   successMessage: string;
   loadingText?: string;
   requireAreYouSure?: boolean;
@@ -30,7 +30,7 @@ export function ActionButton<
   TVariables = void,
 >({
   mutationOptions,
-  data,
+  variables,
   successMessage = "Operazione effettuata con successo",
   loadingText = "Caricamento",
   requireAreYouSure = false,
@@ -48,7 +48,7 @@ export function ActionButton<
 
   async function performAction() {
     try {
-      await mutateAsync(data as TVariables);
+      await mutateAsync(variables as TVariables);
       if (displayToast) {
         toast.show({
           variant: "success",

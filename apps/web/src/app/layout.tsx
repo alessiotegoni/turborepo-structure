@@ -1,7 +1,7 @@
 import "~/app/styles.css";
 
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Urbanist } from "next/font/google";
 
 import { TRPCReactProvider } from "@beeto/api/web/react";
 import { prefetch, trpc } from "@beeto/api/web/server";
@@ -34,14 +34,14 @@ export const viewport: Viewport = {
   ],
 };
 
-const geistSans = Geist({
+const urbanist = Urbanist({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  variable: "--font-urbanist",
 });
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-});
+// const geistMono = Geist_Mono({
+//   subsets: ["latin"],
+//   variable: "--font-geist-mono",
+// });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   prefetch(trpc.auth.getUser.queryOptions());
@@ -50,9 +50,8 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "bg-background text-foreground min-h-screen font-sans antialiased",
-          geistSans.variable,
-          geistMono.variable,
+          "bg-background text-foreground min-h-screen antialiased",
+          urbanist.className,
         )}
       >
         <ToastProvider />
