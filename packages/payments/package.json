@@ -15,12 +15,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@beeto/db": "workspace:*",
     "@t3-oss/env-core": "catalog:",
     "stripe": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@beeto/db": "workspace:*",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

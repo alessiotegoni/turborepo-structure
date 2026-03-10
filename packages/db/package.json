@@ -37,13 +37,13 @@
     "with-env": "dotenv -e ../../.env --"
   },
   "dependencies": {
-    "@beeto/supabase": "workspace:*",
     "drizzle-orm": "catalog:",
     "drizzle-zod": "catalog:",
     "postgres": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@beeto/supabase": "workspace:*",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",

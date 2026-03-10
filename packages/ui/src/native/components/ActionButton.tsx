@@ -1,14 +1,21 @@
-"use client";
-
 import type { MutationOptions } from "@tanstack/react-query";
 import type { ButtonRootProps } from "heroui-native";
 import { Alert } from "react-native";
-import { FadeIn, LinearTransition } from "react-native-reanimated";
+import Animated, {
+  FadeIn,
+  FadeOut,
+  LinearTransition,
+} from "react-native-reanimated";
 import { useMutation } from "@tanstack/react-query";
 import { Button, Spinner, useToast } from "heroui-native";
 
-type ActionButtonProps = ButtonRootProps & {
-  mutationOptions: MutationOptions;
+type ActionButtonProps<
+  TData = unknown,
+  TError = Error,
+  TVariables = void,
+> = ButtonRootProps & {
+  mutationOptions: MutationOptions<TData, TError, TVariables>;
+  data?: TVariables;
   successMessage: string;
   loadingText?: string;
   requireAreYouSure?: boolean;
@@ -17,8 +24,13 @@ type ActionButtonProps = ButtonRootProps & {
   displayToast?: boolean;
 };
 
-export default function ActionButton({
+export function ActionButton<
+  TData = unknown,
+  TError = Error,
+  TVariables = void,
+>({
   mutationOptions,
+  data,
   successMessage = "Operazione effettuata con successo",
   loadingText = "Caricamento",
   requireAreYouSure = false,
@@ -29,14 +41,14 @@ export default function ActionButton({
   isDisabled,
   children,
   ...props
-}: ActionButtonProps) {
+}: ActionButtonProps<TData, TError, TVariables>) {
   const { toast } = useToast();
 
   const { isPending, mutateAsync } = useMutation(mutationOptions);
 
   async function performAction() {
     try {
-      await mutateAsync();
+      await mutateAsync(data as TVariables);
       if (displayToast) {
         toast.show({
           variant: "success",
@@ -81,8 +93,13 @@ export default function ActionButton({
       onPress={handlePress}
       {...props}
     >
-      <Spinner isLoading={isPending} entering={FadeIn.delay(50)} />
-      {!isPending && children}
+      {isPending ? (
+        <Spinner entering={FadeIn.delay(50)} />
+      ) : (
+        <Animated.View entering={FadeIn.delay(50)} exiting={FadeOut}>
+          {children}
+        </Animated.View>
+      )}
     </Button>
   );
 }

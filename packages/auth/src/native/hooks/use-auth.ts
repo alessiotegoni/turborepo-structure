@@ -8,16 +8,18 @@ interface useAuthProps {
   onOtpSent?: () => void;
   onOtpVerified?: () => void;
   onSignOut?: () => void;
+  initialEmail?: string;
 }
 
 export function useAuth({
   onOtpSent,
   onOtpVerified,
   onSignOut,
+  initialEmail = "",
 }: useAuthProps = {}) {
   const queryClient = useQueryClient();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(initialEmail);
   const [token, setToken] = useState("");
 
   const sendOtpOptions = trpc.auth.signInWithOtp.mutationOptions({
@@ -45,5 +47,13 @@ export function useAuth({
     },
   });
 
-  return { sendOtpOptions, verifyOtpOptions, signOutOptions };
+  return {
+    sendOtpOptions,
+    verifyOtpOptions,
+    signOutOptions,
+    email,
+    setEmail,
+    token,
+    setToken,
+  };
 }

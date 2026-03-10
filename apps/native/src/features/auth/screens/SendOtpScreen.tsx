@@ -4,12 +4,13 @@ import { useRouter } from "expo-router";
 
 import { useAuth } from "@beeto/auth/native/hooks";
 import { Button, Input } from "@beeto/ui/native";
+import { ActionButton } from "@beeto/ui/native/components";
 
 export function SendOtpScreen() {
   const router = useRouter();
 
-  const { sendOtpOptions } = useAuth({
-    onOtpSent: () => router.replace("/(auth)/verify-otp"),
+  const { sendOtpOptions, email, setEmail } = useAuth({
+    onOtpSent: () => router.replace(`/(auth)/verify-otp?email=${email}`),
   });
 
   return (
@@ -29,6 +30,7 @@ export function SendOtpScreen() {
           />
           <ActionButton
             mutationOptions={sendOtpOptions}
+            data={{ email }}
             successMessage="Codice inviato!"
           >
             <Button.Label>Invia Codice</Button.Label>

@@ -1,15 +1,18 @@
 import { AppState, Text, View } from "react-native";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 import { useAuth } from "@beeto/auth/native/hooks";
-import { useUser } from "@beeto/auth/native/providers";
 import { supabase } from "@beeto/supabase/native";
 import { Button, InputOTP } from "@beeto/ui/native";
+import { ActionButton } from "@beeto/ui/native/components";
 
 export function VerifyOtpScreen() {
   const router = useRouter();
 
-  const { verifyOtpOptions } = useAuth({
+  const { email } = useLocalSearchParams<{ email: string }>();
+
+  const { verifyOtpOptions, token, setToken } = useAuth({
+    initialEmail: email,
     onOtpVerified: () => router.replace("/(public)/events"),
   });
 
@@ -36,6 +39,7 @@ export function VerifyOtpScreen() {
           </InputOTP>
           <ActionButton
             mutationOptions={verifyOtpOptions}
+            data={{ email, token }}
             successMessage="Login effettuato con successo!"
           >
             <Button.Label>Verifica codice</Button.Label>
