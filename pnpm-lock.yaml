@@ -297,6 +297,9 @@ importers:
       '@beeto/api':
         specifier: workspace:*
         version: link:../../packages/api
+      '@beeto/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@beeto/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint

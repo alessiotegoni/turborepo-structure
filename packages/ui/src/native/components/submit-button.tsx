@@ -1,65 +1,60 @@
 import type { MutationOptions } from "@tanstack/react-query";
 import type { ButtonRootProps } from "heroui-native";
-import { Alert } from "react-native";
 import Animated, { FadeIn, LinearTransition } from "react-native-reanimated";
 import { Button, Spinner } from "heroui-native";
+import { FieldValues, useFormContext } from "react-hook-form";
 
 import type { SuccessResponse } from "@beeto/api/helpers";
 
 import { useMutation } from "../hooks/use-mutation";
 
-type ActionButtonProps<
+type SubmitButtonProps<
   TData extends SuccessResponse<unknown>,
   TError extends { message: string },
-  TVariables,
+  TVariables extends FieldValues,
 > = ButtonRootProps & {
   mutationOptions: MutationOptions<TData, TError, TVariables>;
-  variables: TVariables;
   loadingText?: string;
-  requireAreYouSure?: boolean;
-  areYouSureTitle?: string;
-  areYouSureDescription?: string;
   showToast?: boolean;
 };
 
-export function ActionButton<
+/**
+ * Button di submit integrato con react-hook-form.
+ * Usa `form.handleSubmit` per validare il form prima di chiamare la mutation,
+ * passando i valori del form come variabili.
+ *
+ * Deve essere usato all'interno di un `<FormProvider>`.
+ *
+ * @example
+ * <FormProvider {...form}>
+ *   <Field name="title" render={...} />
+ *   <SubmitButton mutationOptions={createEventOptions}>
+ *     <Button.Label>Crea</Button.Label>
+ *   </SubmitButton>
+ * </FormProvider>
+ */
+export function SubmitButton<
   TData extends SuccessResponse<unknown>,
   TError extends { message: string },
-  TVariables,
+  TVariables extends FieldValues,
 >({
   mutationOptions,
-  variables,
   loadingText,
-  requireAreYouSure = false,
-  areYouSureTitle = "Sei sicuro?",
-  areYouSureDescription = "Questa azione non può essere annullata",
   showToast = true,
   className,
   isDisabled,
   children,
   ...props
-}: ActionButtonProps<TData, TError, TVariables>) {
+}: SubmitButtonProps<TData, TError, TVariables>) {
+  const form = useFormContext<TVariables>();
+
   const { isPending, mutateAsync } = useMutation(mutationOptions, {
     showToast,
   });
 
-  const performAction = () => mutateAsync(variables);
+  const onSubmit = (values: TVariables) => mutateAsync(values);
 
-  function handlePress() {
-    if (!requireAreYouSure) {
-      performAction();
-      return;
-    }
-
-    Alert.alert(areYouSureTitle, areYouSureDescription, [
-      { text: "Annulla", style: "cancel" },
-      {
-        text: "Conferma",
-        style: "destructive",
-        onPress: performAction,
-      },
-    ]);
-  }
+  const handlePress = () => form.handleSubmit(onSubmit)();
 
   return (
     <Button

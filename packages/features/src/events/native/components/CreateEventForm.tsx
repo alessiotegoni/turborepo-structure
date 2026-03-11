@@ -4,7 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 
 import { useUser } from "@beeto/auth/native/providers";
 import { Button, Input, Label } from "@beeto/ui/native";
-import { ActionButton, FormField } from "@beeto/ui/native/components";
+import { FormField, SubmitButton } from "@beeto/ui/native/components";
 
 import { InsertEvent, insertEventSchema } from "../../validators";
 import { useEvent } from "../hooks";
@@ -15,7 +15,6 @@ const Field = FormField.typed<InsertEvent>();
 
 export function CreateEventForm() {
   const { user } = useUser();
-
   const { createEventOptions } = useEvent();
 
   const form = useForm<InsertEvent>({
@@ -46,13 +45,9 @@ export function CreateEventForm() {
         )}
       />
 
-      <ActionButton
-        variant="primary"
-        mutationOptions={createEventOptions}
-        variables={{ title, description, createdBy: user.id }}
-      >
+      <SubmitButton variant="primary" mutationOptions={createEventOptions}>
         <Button.Label>Crea</Button.Label>
-      </ActionButton>
+      </SubmitButton>
     </FormProvider>
   );
 }

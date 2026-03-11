@@ -9,6 +9,10 @@
       "types": "./src/native/components/index.ts",
       "default": "./src/native/components/index.ts"
     },
+    "./native/hooks": {
+      "types": "./src/native/hooks/index.ts",
+      "default": "./src/native/hooks/index.ts"
+    },
     "./native/styles": "./src/native/styles.css",
     "./web": "./src/web/index.ts",
     "./web/styles": "./src/web/styles.css"

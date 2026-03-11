@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@beeto/api": "workspace:*",
+    "@beeto/db": "workspace:*",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/supabase": "workspace:*",
