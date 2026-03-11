@@ -1,4 +1,5 @@
 import React from "react";
+import { Pressable, View } from "react-native";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -26,28 +27,34 @@ export function CreateEventForm() {
 
   return (
     <FormProvider {...form}>
-      <Field
-        name="title"
-        render={({ field }) => (
-          <>
-            <Label>Titolo</Label>
-            <Input {...field} />
-          </>
-        )}
-      />
-      <Field
-        name="description"
-        render={({ field }) => (
-          <>
-            <Label>Descrizione</Label>
-            <Input {...field} value={field.value ?? undefined} />
-          </>
-        )}
-      />
+      <View className="gap-5">
+        <Field
+          name="title"
+          render={({ field }) => (
+            <>
+              <Label>Titolo</Label>
+              <Input {...field} onChangeText={field.onChange} />
+            </>
+          )}
+        />
+        <Field
+          name="description"
+          render={({ field }) => (
+            <>
+              <Label>Descrizione</Label>
+              <Input
+                {...field}
+                onChangeText={field.onChange}
+                value={field.value ?? undefined}
+              />
+            </>
+          )}
+        />
 
-      <SubmitButton variant="primary" mutationOptions={createEventOptions}>
-        <Button.Label>Crea</Button.Label>
-      </SubmitButton>
+        <SubmitButton variant="primary" mutationOptions={createEventOptions}>
+          <Button.Label>Crea</Button.Label>
+        </SubmitButton>
+      </View>
     </FormProvider>
   );
 }

@@ -64,7 +64,8 @@
     "prettier": "catalog:",
     "react-native": "catalog:",
     "utf-8-validate": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "uniwind": "latest"
   },
   "prettier": "@beeto/prettier-config"
 }

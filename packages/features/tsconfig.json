@@ -3,7 +3,7 @@
   "compilerOptions": {
     "jsx": "preserve",
     "lib": ["ES2022", "dom"],
-    "types": ["react", "react-native"]
+    "types": ["react", "react-native", "uniwind/types"]
   },
   "include": ["src", "*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
