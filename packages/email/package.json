@@ -29,7 +29,7 @@
     "@react-email/components": "^1.0.8",
     "@sendgrid/mail": "^8.1.6",
     "@t3-oss/env-core": "catalog:",
-    "react-email": "^3.0.0",
+    "react-email": "^5.2.9",
     "zod": "catalog:"
   },
   "peerDependencies": {

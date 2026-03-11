@@ -84,12 +84,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       message:
         error.cause instanceof ZodError
-          ? error.cause.issues
-              .map((issue) => {
-                const path = issue.path.join(".");
-                return path ? `${path}: ${issue.message}` : issue.message;
-              })
-              .join("; ")
+          ? error.cause.issues.map((issue) => issue.message).join("; ")
           : shape.message,
       data: {
         ...shape.data,

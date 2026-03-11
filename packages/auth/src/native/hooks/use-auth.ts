@@ -27,7 +27,7 @@ export function useAuth({
   });
 
   const verifyOtpOptions = trpc.auth.verifyOtp.mutationOptions({
-    onSuccess: async (data) => {
+    onSuccess: async ({ data }) => {
       if (data?.session) {
         await supabase.auth.setSession({
           access_token: data.session.access_token,

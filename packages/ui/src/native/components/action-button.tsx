@@ -4,7 +4,6 @@ import { useEffect, useEffectEvent } from "react";
 import { Alert } from "react-native";
 import Animated, {
   FadeIn,
-  FadeOut,
   LinearTransition,
 } from "react-native-reanimated";
 import { useMutation } from "@tanstack/react-query";
@@ -18,12 +17,12 @@ type ActionButtonProps<
   TVariables,
 > = ButtonRootProps & {
   mutationOptions: MutationOptions<TData, TError, TVariables>;
-  variables?: TVariables;
+  variables: TVariables;
   loadingText?: string;
   requireAreYouSure?: boolean;
   areYouSureTitle?: string;
   areYouSureDescription?: string;
-  displayToast?: boolean;
+  showToast?: boolean;
 };
 
 export function ActionButton<
@@ -33,11 +32,11 @@ export function ActionButton<
 >({
   mutationOptions,
   variables,
-  loadingText = "Caricamento",
+  loadingText,
   requireAreYouSure = false,
   areYouSureTitle = "Sei sicuro?",
   areYouSureDescription = "Questa azione non può essere annullata",
-  displayToast = true,
+  showToast = true,
   className,
   isDisabled,
   children,
@@ -49,7 +48,8 @@ export function ActionButton<
     useMutation(mutationOptions);
 
   const onSuccess = useEffectEvent((data: TData) => {
-    if (!displayToast) return;
+    if (!showToast) return;
+
     toast.show({
       variant: "success",
       label: data.message,
@@ -59,7 +59,8 @@ export function ActionButton<
   });
 
   const onError = useEffectEvent((error: TError) => {
-    if (!displayToast) return;
+    if (!showToast) return;
+
     toast.show({
       variant: "danger",
       label: error.message,
@@ -76,7 +77,7 @@ export function ActionButton<
     if (isError) onError(error);
   }, [error]);
 
-  const performAction = () => mutateAsync(variables as TVariables);
+  const performAction = () => mutateAsync(variables);
 
   function handlePress() {
     if (!requireAreYouSure) {
@@ -103,9 +104,15 @@ export function ActionButton<
       {...props}
     >
       {isPending ? (
-        <Spinner entering={FadeIn.delay(50)} />
+        <Animated.View
+          entering={FadeIn}
+          style={{ flexDirection: "row", gap: 10 }}
+        >
+          <Spinner />
+          {loadingText && <Button.Label>{loadingText}...</Button.Label>}
+        </Animated.View>
       ) : (
-        <Animated.View entering={FadeIn.delay(50)} exiting={FadeOut}>
+        <Animated.View entering={FadeIn}>
           {children}
         </Animated.View>
       )}

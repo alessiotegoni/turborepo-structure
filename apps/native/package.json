@@ -54,6 +54,7 @@
     "react-native-svg": "^15.15.3",
     "react-native-web": "~0.21.0",
     "react-native-worklets": "catalog:",
+    "react-hook-form": "catalog:",
     "@expo/metro-runtime": "catalog:"
   },
   "devDependencies": {

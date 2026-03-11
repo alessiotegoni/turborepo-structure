@@ -9,6 +9,7 @@ import {
 } from "@beeto/db/queries/events";
 import { insertEventSchema } from "@beeto/features/events/validators";
 
+import { createSuccess } from "../helpers";
 import { protectedProcedure, publicProcedure } from "../trpc";
 
 export const eventRouter = {
@@ -22,14 +23,20 @@ export const eventRouter = {
 
   create: protectedProcedure
     .input(insertEventSchema)
-    .mutation(({ input, ctx }) => {
-      return createEvent({
+    .mutation(async ({ input, ctx }) => {
+      await createEvent({
         ...input,
         createdBy: ctx.user.id,
       });
+
+      return createSuccess(null, "Evento creato con successo!");
     }),
 
-  delete: protectedProcedure.input(z.string()).mutation(({ input }) => {
-    return deleteEvent(input);
-  }),
+  delete: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ input: eventId }) => {
+      await deleteEvent(eventId);
+
+      return createSuccess(null, "Evento eliminato con successo!");
+    }),
 } satisfies TRPCRouterRecord;

@@ -1,1 +1,1 @@
-export * from "./use-event-list";
+export * from "./use-event";
