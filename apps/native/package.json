@@ -18,6 +18,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@beeto/api": "workspace:*",
     "@beeto/auth": "workspace:^",
     "@beeto/features": "workspace:^",
     "@beeto/ui": "workspace:*",
@@ -58,7 +59,6 @@
     "@expo/metro-runtime": "catalog:"
   },
   "devDependencies": {
-    "@beeto/api": "workspace:*",
     "@beeto/db": "workspace:*",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
@@ -70,7 +70,7 @@
     "prettier": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "uniwind": "latest"
+    "uniwind": "catalog:"
   },
   "private": true
 }

@@ -47,6 +47,7 @@ catalog:
   zod: ^4.1.12
   "@expo/metro-runtime": ~55.0.6
   "utf-8-validate": ^5.0.2
+  uniwind: latest
 
 catalogs:
   react19:
