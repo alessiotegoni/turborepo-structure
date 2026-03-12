@@ -16,7 +16,7 @@ export const userCategories = pgTable(
   {
     userId: uuid("user_id").notNull(),
     categoryId: uuid("category_id").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

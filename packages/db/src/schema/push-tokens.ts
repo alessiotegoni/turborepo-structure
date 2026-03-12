@@ -16,7 +16,7 @@ export const pushTokens = pgTable(
     userId: uuid("user_id").notNull(),
     token: text().notNull(),
     deviceType: text("device_type"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

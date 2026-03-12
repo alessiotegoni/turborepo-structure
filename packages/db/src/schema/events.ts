@@ -33,16 +33,16 @@ export const events = pgTable(
     longitude: doublePrecision(),
     startsAt: timestamp("starts_at", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }).notNull(),
-    endsAt: timestamp("ends_at", { withTimezone: true, mode: "string" }),
+    endsAt: timestamp("ends_at", { withTimezone: true, mode: "date" }),
     coverImageUrl: text("cover_image_url"),
     categoryId: uuid("category_id"),
     status: text().default("draft").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

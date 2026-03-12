@@ -20,7 +20,7 @@ export const creatorProfiles = pgTable(
     userId: uuid("user_id").notNull(),
     vatNumber: text("vat_number"),
     companyName: text("company_name"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

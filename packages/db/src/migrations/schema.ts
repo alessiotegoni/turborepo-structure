@@ -28,7 +28,7 @@ export const ticketTypes = pgTable(
     priceCents: integer("price_cents").default(0).notNull(),
     maxQuantity: integer("max_quantity"),
     isFree: boolean("is_free").default(false).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -58,13 +58,13 @@ export const tickets = pgTable(
     checkedIn: boolean("checked_in").default(false).notNull(),
     checkedInAt: timestamp("checked_in_at", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     stripePaymentId: text("stripe_payment_id"),
     amountPaidCents: integer("amount_paid_cents").default(0).notNull(),
     status: text().default("active").notNull(),
     refundStatus: text("refund_status"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -114,10 +114,10 @@ export const profiles = pgTable(
     stripeCustomerId: text("stripe_customer_id"),
     phone: text(),
     dateOfBirth: date("date_of_birth"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -140,7 +140,7 @@ export const creatorProfiles = pgTable(
     userId: uuid("user_id").notNull(),
     vatNumber: text("vat_number"),
     companyName: text("company_name"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -159,7 +159,7 @@ export const userSettings = pgTable(
   {
     userId: uuid("user_id").primaryKey().notNull(),
     pushNotifications: boolean("push_notifications").default(true).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -181,7 +181,7 @@ export const categories = pgTable(
       .notNull(),
     name: text().notNull(),
     iconUrl: text("icon_url"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -201,14 +201,14 @@ export const subscriptions = pgTable(
     status: text().default("active").notNull(),
     currentPeriodStart: timestamp("current_period_start", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     currentPeriodEnd: timestamp("current_period_end", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     cancelAtPeriodEnd: boolean("cancel_at_period_end").default(false).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -250,7 +250,7 @@ export const subscriptionPlans = pgTable(
     interval: text().default("month").notNull(),
     features: jsonb().default({}),
     isActive: boolean("is_active").default(true).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -272,7 +272,7 @@ export const payments = pgTable(
     amountCents: integer("amount_cents").notNull(),
     status: text().default("pending").notNull(),
     metadata: jsonb().default({}),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -310,16 +310,16 @@ export const events = pgTable(
     longitude: doublePrecision(),
     startsAt: timestamp("starts_at", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }).notNull(),
-    endsAt: timestamp("ends_at", { withTimezone: true, mode: "string" }),
+    endsAt: timestamp("ends_at", { withTimezone: true, mode: "date" }),
     coverImageUrl: text("cover_image_url"),
     categoryId: uuid("category_id"),
     status: text().default("draft").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -367,7 +367,7 @@ export const eventCommunications = pgTable(
     channel: text().default("push").notNull(),
     subject: text(),
     body: text().notNull(),
-    sentAt: timestamp("sent_at", { withTimezone: true, mode: "string" })
+    sentAt: timestamp("sent_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -394,7 +394,7 @@ export const userCategories = pgTable(
   {
     userId: uuid("user_id").notNull(),
     categoryId: uuid("category_id").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -429,7 +429,7 @@ export const bookmarks = pgTable(
   {
     userId: uuid("user_id").notNull(),
     eventId: uuid("event_id").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },
@@ -465,7 +465,7 @@ export const pushTokens = pgTable(
     userId: uuid("user_id").notNull(),
     token: text().notNull(),
     deviceType: text("device_type"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

@@ -25,7 +25,7 @@ export const subscriptionPlans = pgTable(
     interval: text().default("month").notNull(),
     features: jsonb().default({}),
     isActive: boolean("is_active").default(true).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

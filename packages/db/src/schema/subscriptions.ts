@@ -26,14 +26,14 @@ export const subscriptions = pgTable(
     status: text().default("active").notNull(),
     currentPeriodStart: timestamp("current_period_start", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     currentPeriodEnd: timestamp("current_period_end", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     cancelAtPeriodEnd: boolean("cancel_at_period_end").default(false).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

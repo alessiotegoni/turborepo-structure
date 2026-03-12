@@ -25,7 +25,7 @@ export const payments = pgTable(
     amountCents: integer("amount_cents").notNull(),
     status: text().default("pending").notNull(),
     metadata: jsonb().default({}),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

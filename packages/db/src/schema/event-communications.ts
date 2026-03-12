@@ -20,7 +20,7 @@ export const eventCommunications = pgTable(
     channel: text().default("push").notNull(),
     subject: text(),
     body: text().notNull(),
-    sentAt: timestamp("sent_at", { withTimezone: true, mode: "string" })
+    sentAt: timestamp("sent_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

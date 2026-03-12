@@ -14,7 +14,7 @@ export const userSettings = pgTable(
   {
     userId: uuid("user_id").primaryKey().notNull(),
     pushNotifications: boolean("push_notifications").default(true).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

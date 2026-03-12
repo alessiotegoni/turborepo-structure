@@ -19,7 +19,7 @@
       "types": "./src/events/native/components/index.ts",
       "default": "./src/events/native/components/index.ts"
     },
-    "./users": {
+    "./profiles": {
       "types": "./src/users/index.ts",
       "default": "./src/users/index.ts"
     }

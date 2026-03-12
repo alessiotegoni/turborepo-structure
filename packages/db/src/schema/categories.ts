@@ -13,7 +13,7 @@ export const categories = pgTable(
       .notNull(),
     name: text().notNull(),
     iconUrl: text("icon_url"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

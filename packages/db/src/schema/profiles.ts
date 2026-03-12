@@ -34,10 +34,10 @@ export const profiles = pgTable(
     stripeCustomerId: text("stripe_customer_id"),
     phone: text(),
     dateOfBirth: date("date_of_birth"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

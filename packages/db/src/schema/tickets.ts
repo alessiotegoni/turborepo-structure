@@ -28,13 +28,13 @@ export const tickets = pgTable(
     checkedIn: boolean("checked_in").default(false).notNull(),
     checkedInAt: timestamp("checked_in_at", {
       withTimezone: true,
-      mode: "string",
+      mode: "date",
     }),
     stripePaymentId: text("stripe_payment_id"),
     amountPaidCents: integer("amount_paid_cents").default(0).notNull(),
     status: text().default("active").notNull(),
     refundStatus: text("refund_status"),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

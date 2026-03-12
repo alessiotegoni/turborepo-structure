@@ -16,7 +16,7 @@ export const bookmarks = pgTable(
   {
     userId: uuid("user_id").notNull(),
     eventId: uuid("event_id").notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

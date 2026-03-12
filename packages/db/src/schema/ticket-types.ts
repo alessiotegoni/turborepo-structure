@@ -25,7 +25,7 @@ export const ticketTypes = pgTable(
     priceCents: integer("price_cents").default(0).notNull(),
     maxQuantity: integer("max_quantity"),
     isFree: boolean("is_free").default(false).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "date" })
       .defaultNow()
       .notNull(),
   },

@@ -22,7 +22,8 @@ export function CreateEventForm() {
   const form = useForm<InsertEvent>({
     resolver: zodResolver(insertEventSchema),
     defaultValues: {
-      createdBy: user!.id,
+      creatorId: user?.id,
+      startsAt: new Date(),
     },
   });
 

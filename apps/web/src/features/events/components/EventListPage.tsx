@@ -36,7 +36,12 @@ export function EventListPage() {
             variant="primary"
             isPending={createEvent.isPending}
             onPress={() =>
-              createEvent.mutate({ title, description, createdBy: user.id })
+              createEvent.mutate({
+                title,
+                description,
+                creatorId: user.id,
+                startsAt: new Date(),
+              })
             }
           >
             Create
