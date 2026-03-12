@@ -4,7 +4,7 @@ import { mutationOptions, useQueryClient } from "@tanstack/react-query";
 import { trpc } from "@beeto/api/native";
 import { supabase } from "@beeto/supabase/native";
 
-interface useAuthProps {
+interface useAuthArgs {
   onOtpSent?: () => void;
   onOtpVerified?: () => void;
   onSignOut?: () => void;
@@ -16,7 +16,7 @@ export function useAuth({
   onOtpVerified,
   onSignOut,
   initialEmail = "",
-}: useAuthProps = {}) {
+}: useAuthArgs = {}) {
   const queryClient = useQueryClient();
 
   const [email, setEmail] = useState(initialEmail);

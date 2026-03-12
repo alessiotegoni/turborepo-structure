@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@beeto/auth/web/providers";
-import { useEventList } from "@beeto/features/events/web/hooks";
+import { useEvent } from "@beeto/features/events/web/hooks";
 import { Button, Input } from "@beeto/ui/web";
 
 export function EventListPage() {
@@ -14,7 +14,7 @@ export function EventListPage() {
     setDescription,
     createEvent,
     deleteEvent,
-  } = useEventList();
+  } = useEvent();
 
   return (
     <div className="flex flex-col gap-6 p-6">

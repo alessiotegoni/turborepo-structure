@@ -17,7 +17,6 @@ const Field = FormField.typed<InsertEvent>();
 
 export function CreateEventForm() {
   const { user } = useUser();
-  const { createEventOptions } = useEvent();
 
   const form = useForm<InsertEvent>({
     resolver: zodResolver(insertEventSchema),
@@ -26,6 +25,8 @@ export function CreateEventForm() {
       startsAt: new Date(),
     },
   });
+
+  const { createEventOptions } = useEvent({ onEventCreated: form.reset });
 
   return (
     <FormProvider {...form}>

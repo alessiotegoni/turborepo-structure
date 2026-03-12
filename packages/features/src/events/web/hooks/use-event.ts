@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useTRPC } from "@beeto/api/web/react";
 import { toast } from "@beeto/ui/web";
 
-export function useEventList() {
+export function useEvent() {
   const trpc = useTRPC();
   const queryClient = useQueryClient();
 

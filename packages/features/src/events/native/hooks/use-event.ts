@@ -1,13 +1,14 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { queryClient, trpc } from "@beeto/api/native";
 
-import { trpc } from "@beeto/api/native";
+interface useEventProps {
+  onEventCreated?: () => void;
+}
 
-export function useEvent() {
-  const queryClient = useQueryClient();
-
+export function useEvent({ onEventCreated }: useEventProps = {}) {
   const createEventOptions = trpc.event.create.mutationOptions({
     onSuccess: () => {
       queryClient.invalidateQueries(trpc.event.all.pathFilter());
+      onEventCreated?.();
     },
   });
 
@@ -17,8 +18,5 @@ export function useEvent() {
     },
   });
 
-  return {
-    createEventOptions,
-    deleteEventOptions,
-  };
+  return { createEventOptions, deleteEventOptions };
 }
