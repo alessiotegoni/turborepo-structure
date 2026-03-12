@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
-import { Button, Card, Surface } from "@beeto/ui/native/components";
+import { Button, Card } from "@beeto/ui/native/components";
 
 export default function Index() {
   return (
@@ -24,30 +24,6 @@ export default function Index() {
           </Card.Body>
         </Card>
         <Button variant="primary">test</Button>
-        <View className="gap-4">
-          <Surface variant="default" className="gap-2">
-            <Text className="text-foreground">Surface Content</Text>
-            <Text className="text-muted">
-              This is a default surface variant. It uses bg-surface styling.
-            </Text>
-          </Surface>
-
-          <Surface variant="secondary" className="gap-2">
-            <Text className="text-foreground">Surface Content</Text>
-            <Text className="text-muted">
-              This is a secondary surface variant. It uses bg-surface-secondary
-              styling.
-            </Text>
-          </Surface>
-
-          <Surface variant="tertiary" className="gap-2">
-            <Text className="text-foreground">Surface Content</Text>
-            <Text className="text-muted">
-              This is a tertiary surface variant. It uses bg-surface-tertiary
-              styling.
-            </Text>
-          </Surface>
-        </View>
       </View>
     </SafeAreaView>
   );
