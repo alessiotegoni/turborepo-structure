@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useTRPC } from "@beeto/api/web/react";
 
-import { UserContextType } from "../../types";
+import type { UserContextType } from "../../types";
 
 const UserContext = createContext<UserContextType>({
   user: null,

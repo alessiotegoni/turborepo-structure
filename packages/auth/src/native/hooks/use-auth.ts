@@ -28,10 +28,11 @@ export function useAuth({
 
   const verifyOtpOptions = trpc.auth.verifyOtp.mutationOptions({
     onSuccess: async ({ data }) => {
-      if (data?.session) {
+      const session = data.session;
+      if (session) {
         await supabase.auth.setSession({
-          access_token: data.session.access_token,
-          refresh_token: data.session.refresh_token,
+          access_token: session.access_token,
+          refresh_token: session.refresh_token,
         });
       }
       await queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());

@@ -1,22 +1,16 @@
-import type { MutationOptions } from "@tanstack/react-query";
-import type { ButtonRootProps } from "heroui-native";
 import Animated, { FadeIn, LinearTransition } from "react-native-reanimated";
 import { Button, Spinner } from "heroui-native";
-import { FieldValues, useFormContext } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
-import type { SuccessResponse } from "@beeto/api/helpers";
-
-import { useMutation } from "../hooks/use-mutation";
+import type { SuccessResponse, MutationButtonProps } from "./types";
+import { useMutation } from "../../../../hooks/use-mutation";
 
 type SubmitButtonProps<
   TData extends SuccessResponse<unknown>,
   TError extends { message: string },
   TVariables extends FieldValues,
-> = ButtonRootProps & {
-  mutationOptions: MutationOptions<TData, TError, TVariables>;
-  loadingText?: string;
-  showToast?: boolean;
-};
+> = MutationButtonProps<TData, TError, TVariables>;
 
 /**
  * Button di submit integrato con react-hook-form.

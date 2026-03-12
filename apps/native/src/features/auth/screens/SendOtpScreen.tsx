@@ -1,10 +1,9 @@
-import React from "react";
 import { Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { useAuth } from "@beeto/auth/native/hooks";
-import { Button, Input } from "@beeto/ui/native";
-import { ActionButton } from "@beeto/ui/native/components";
+import { Button, Input } from "@beeto/ui/native/components";
+import { ActionButton } from "@beeto/ui/native/components/extended";
 
 export function SendOtpScreen() {
   const router = useRouter();

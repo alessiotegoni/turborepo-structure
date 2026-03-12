@@ -907,9 +907,6 @@ importers:
         specifier: 'catalog:'
         version: 4.1.12
     devDependencies:
-      '@beeto/api':
-        specifier: workspace:^
-        version: link:../api
       '@beeto/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint

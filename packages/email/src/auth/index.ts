@@ -3,7 +3,7 @@ import * as React from "react";
 import { sendEmail } from "../utils";
 import { AuthEmail } from "./template";
 
-export type SendAuthEmailOptions = {
+export interface SendAuthEmailOptions {
   to: string;
   url: string;
   otp: string;
@@ -16,7 +16,7 @@ export const sendAuthEmail = async ({
   isAlreadySignedIn,
   otp,
 }: SendAuthEmailOptions) => {
-  let subject = isAlreadySignedIn
+  const subject = isAlreadySignedIn
     ? "Your Beeto Verification Code"
     : "Welcome to Beeto!";
 

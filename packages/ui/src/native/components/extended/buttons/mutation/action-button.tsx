@@ -1,19 +1,15 @@
-import type { MutationOptions } from "@tanstack/react-query";
-import type { ButtonRootProps } from "heroui-native";
 import { Alert } from "react-native";
 import Animated, { FadeIn, LinearTransition } from "react-native-reanimated";
 import { Button, Spinner } from "heroui-native";
 
-import type { SuccessResponse } from "@beeto/api/helpers";
-
-import { useMutation } from "../hooks/use-mutation";
+import type { SuccessResponse, MutationButtonProps } from "./types";
+import { useMutation } from "../../../../hooks/use-mutation";
 
 type ActionButtonProps<
   TData extends SuccessResponse<unknown>,
   TError extends { message: string },
   TVariables,
-> = ButtonRootProps & {
-  mutationOptions: MutationOptions<TData, TError, TVariables>;
+> = MutationButtonProps<TData, TError, TVariables> & {
   variables: TVariables;
   loadingText?: string;
   requireAreYouSure?: boolean;
@@ -56,7 +52,7 @@ export function ActionButton<
       {
         text: "Conferma",
         style: "destructive",
-        onPress: performAction,
+        onPress: () => { void performAction(); },
       },
     ]);
   }

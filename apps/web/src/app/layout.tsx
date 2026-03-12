@@ -1,7 +1,7 @@
 import "~/app/styles.css";
 
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Urbanist } from "next/font/google";
+import { Urbanist } from "next/font/google";
 
 import { TRPCReactProvider } from "@beeto/api/web/react";
 import { prefetch, trpc } from "@beeto/api/web/server";

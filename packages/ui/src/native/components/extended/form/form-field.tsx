@@ -1,11 +1,13 @@
 import React from "react";
 import { cn, FieldError, TextField } from "heroui-native";
-import {
-  Controller,
+import type {
   ControllerFieldState,
   ControllerRenderProps,
   FieldValues,
   Path,
+} from "react-hook-form";
+import {
+  Controller,
   useFormContext,
 } from "react-hook-form";
 

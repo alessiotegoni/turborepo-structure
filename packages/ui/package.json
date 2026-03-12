@@ -9,6 +9,10 @@
       "types": "./src/native/components/index.ts",
       "default": "./src/native/components/index.ts"
     },
+    "./native/components/extended": {
+      "types": "./src/native/components/extended/index.ts",
+      "default": "./src/native/components/extended/index.ts"
+    },
     "./native/hooks": {
       "types": "./src/native/hooks/index.ts",
       "default": "./src/native/hooks/index.ts"
@@ -45,7 +49,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@beeto/api": "workspace:^",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tailwind-config": "workspace:*",

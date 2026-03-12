@@ -3,7 +3,7 @@ import type { User as DBUser } from "@beeto/db/schema";
 
 export type User = SupabaseUser & { db: DBUser };
 
-export type UserContextType = {
+export interface UserContextType {
   user: User | null;
   isLoading: boolean;
-};
+}

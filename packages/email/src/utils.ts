@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { render } from "@react-email/components";
 import sgMail from "@sendgrid/mail";
 
@@ -10,7 +10,7 @@ if (env.SENDGRID_API_KEY) {
   sgMail.setApiKey(env.SENDGRID_API_KEY);
 }
 
-export type SendEmailOptions = {
+export interface SendEmailOptions {
   to: string;
   subject: string;
   react: React.ReactElement;

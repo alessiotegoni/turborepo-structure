@@ -2,7 +2,7 @@
   "name": "beeto",
   "private": true,
   "engines": {
-    "node": "^22.21.0",
+    "node": ">=24.11.0",
     "pnpm": "^10.19.0"
   },
   "packageManager": "pnpm@10.19.0",
@@ -21,7 +21,6 @@
     "lint:ws": "pnpm dlx sherif@latest -r unordered-dependencies",
     "postinstall": "pnpm lint:ws",
     "typecheck": "turbo run typecheck",
-    "ui-add": "turbo run ui-add",
     "android": "pnpm -F @beeto/native android",
     "ios": "pnpm -F @beeto/native ios",
     "sync-exports": "node tooling/scripts/sync-exports.js"

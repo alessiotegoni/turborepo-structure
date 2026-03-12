@@ -1,8 +1,8 @@
-export type SuccessResponse<T> = {
+export interface SuccessResponse<T> {
   success: true;
   data: T;
   message: string;
-};
+}
 
 /**
  * Utilizza questa funzione nei tuoi resolver per ritornare dati tipizzati

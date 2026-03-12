@@ -76,6 +76,6 @@ const getBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
   if (typeof window !== "undefined") return "http://localhost:4000";
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  // eslint-disable-next-line no-restricted-properties
+  
   return `http://localhost:${process.env.PORT ?? 4000}`;
 };

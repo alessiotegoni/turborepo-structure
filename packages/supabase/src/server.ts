@@ -3,7 +3,7 @@ import { supabaseEnv } from "../env.web";
 
 const env = supabaseEnv();
 
-export async function createClient(headers: Headers) {
+export function createClient(headers: Headers) {
   const cookieString = headers.get("cookie") ?? "";
   const parsedCookies = parseCookieHeader(cookieString);
 
@@ -18,7 +18,7 @@ export async function createClient(headers: Headers) {
               typeof c.value === "string",
           );
         },
-        setAll(cookiesToSet) {
+        setAll(_cookiesToSet) {
           // ignore setter on backend
         },
       },

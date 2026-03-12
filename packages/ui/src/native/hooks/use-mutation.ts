@@ -67,11 +67,11 @@ export function useMutation<
 
   useEffect(() => {
     if (isSuccess) handleSuccess(data);
-  }, [data]);
+  }, [isSuccess, data]);
 
   useEffect(() => {
     if (isError) handleError(error);
-  }, [error]);
+  }, [isError, error]);
 
   return mutation;
 }

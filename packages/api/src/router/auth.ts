@@ -29,7 +29,7 @@ export const authRouter = {
       }
 
       // 2. Send custom email wrapper
-      if (data.properties?.action_link) {
+      if (data.properties.action_link) {
         const sendResult = await sendAuthEmail({
           to: input.email,
           url: data.properties.action_link,

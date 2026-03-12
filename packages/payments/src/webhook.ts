@@ -18,8 +18,8 @@ export const handleStripeWebhook = async (body: string, sig: string) => {
       sig,
       env.STRIPE_WEBHOOK_SECRET,
     );
-  } catch (err: any) {
-    throw new Error(`Webhook Error: ${err.message}`);
+  } catch (err: unknown) {
+    throw new Error(`Webhook Error: ${(err as Error).message}`);
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
@@ -45,7 +45,7 @@ export const handleStripeWebhook = async (body: string, sig: string) => {
     }
 
     case "customer.subscription.deleted": {
-      const subscription = event.data.object as Stripe.Subscription;
+      const subscription = event.data.object;
       await db
         .update(subscriptions)
         .set({ status: subscription.status, active: false })
@@ -54,7 +54,7 @@ export const handleStripeWebhook = async (body: string, sig: string) => {
     }
 
     case "customer.subscription.updated": {
-      const subscription = event.data.object as Stripe.Subscription;
+      const subscription = event.data.object;
       await db
         .update(subscriptions)
         .set({ status: subscription.status })

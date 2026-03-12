@@ -27,29 +27,29 @@ import { createClient } from "@beeto/supabase/server";
  * @see https://trpc.io/docs/server/context
  */
 
-type ContextType = {
+interface ContextType {
   headers: Headers;
 };
 
 export const createTRPCContext = async ({ headers }: ContextType) => {
-  const supabase = await createClient(headers);
+  const supabase = createClient(headers);
 
-  let user = null;
+  let user;
   const authHeader = headers.get("Authorization");
 
   if (authHeader?.startsWith("Bearer ")) {
     const token = authHeader.split(" ")[1];
     if (token) {
       const { data } = await supabase.auth.getUser(token);
-      user = data?.user ?? null;
+      user = data.user;
     }
   } else {
     // Fallback for browser calls using standard cookies
     const { data } = await supabase.auth.getUser();
-    user = data?.user ?? null;
+    user = data.user;
   }
 
-  const dbUser = user && user.email ? await getUserByEmail(user.email) : null;
+  const dbUser = user?.email ? await getUserByEmail(user.email) : null;
   console.log("Logged user:", user?.id ?? "null", dbUser ?? "null");
 
   return {

@@ -5,8 +5,8 @@ import { trpc } from "@beeto/api/native";
 import { useUser } from "@beeto/auth/native/providers";
 import { CreateEventForm } from "@beeto/features/events/native/components";
 import { useEvent } from "@beeto/features/events/native/hooks";
-import { Button } from "@beeto/ui/native";
-import { ActionButton } from "@beeto/ui/native/components";
+import { Button } from "@beeto/ui/native/components";
+import { ActionButton } from "@beeto/ui/native/components/extended";
 
 export function EventListScreen() {
   const { user } = useUser();

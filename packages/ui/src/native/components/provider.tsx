@@ -1,5 +1,6 @@
 import { KeyboardAvoidingView } from "react-native";
-import { HeroUINativeConfig, HeroUINativeProvider } from "heroui-native";
+import type { HeroUINativeConfig } from "heroui-native";
+import { HeroUINativeProvider } from "heroui-native";
 
 export function UIProvider({ children }: { children: React.ReactNode }) {
   return (

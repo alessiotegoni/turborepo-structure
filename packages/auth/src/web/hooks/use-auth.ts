@@ -28,31 +28,32 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
 
   const verifyOtp = useMutation({
     ...trpc.auth.verifyOtp.mutationOptions({
-      onSuccess: async (data) => {
-        if (data?.session) {
+      onSuccess: async ({data}) => {
+        const session = data.session;
+        if (session) {
           await supabase.auth.setSession({
-            access_token: data.session.access_token,
-            refresh_token: data.session.refresh_token,
+            access_token: session.access_token,
+            refresh_token: session.refresh_token,
           });
           queryClient.invalidateQueries(trpc.auth.getUser.pathFilter())
         }
         onSignIn?.();
         toast.success("Accesso eseguito!");
       },
-      onError: (err) => {
+      onError: () => {
         toast.danger("Errore");
       },
     }),
   });
 
   const signOut = useMutation({
-    mutationFn: supabase.auth.signOut,
+    mutationFn: () => supabase.auth.signOut(),
     onSuccess: () => {
       queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());
       onSignOut?.();
       toast.success("Disconnesso!");
     },
-      onError: (err) => {
+      onError: () => {
       toast.danger("Errore");
     },
   });

@@ -1,13 +1,14 @@
 import React from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
 import { useUser } from "@beeto/auth/native/providers";
-import { Button, Input, Label } from "@beeto/ui/native";
-import { FormField, SubmitButton } from "@beeto/ui/native/components";
+import { Button, Input, Label } from "@beeto/ui/native/components";
+import { FormField, SubmitButton } from "@beeto/ui/native/components/extended";
 
-import { InsertEvent, insertEventSchema } from "../../validators";
+import type { InsertEvent } from "../../validators";
+import { insertEventSchema } from "../../validators";
 import { useEvent } from "../hooks";
 
 // Componente FormField pre-tipizzato per InsertEvent.

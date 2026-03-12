@@ -12,8 +12,10 @@ import { supabase } from "@beeto/supabase/native";
  * Get the base URL for the API.
  * In development, we try to detect the host IP to allow physical devices to connect.
  */
+/* eslint-disable turbo/no-undeclared-env-vars */
 const getBaseUrl = () => {
   if (process.env.EXPO_PUBLIC_API_URL) {
+    // eslint-disable-next-line turbo/no-undeclared-env-vars
     return process.env.EXPO_PUBLIC_API_URL;
   }
 

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { useAuth } from "@beeto/auth/web/hooks";
@@ -24,14 +25,14 @@ export function SignInPage() {
     onSignIn: () => router.replace("/"),
   });
 
-  const handleSendOtp = async (e: React.FormEvent) => {
+  const handleSendOtp = async (e: FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    const res = await signInWithOtp.mutateAsync({ email });
+    await signInWithOtp.mutateAsync({ email });
     setStep("otp");
   };
 
-  const handleVerify = async (e: React.FormEvent) => {
+  const handleVerify = async (e: FormEvent) => {
     e.preventDefault();
     if (!email || !token) return;
     await verifyOtp.mutateAsync({ email, token });

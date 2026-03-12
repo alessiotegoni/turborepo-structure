@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
-import { Button, Card, Surface } from "@beeto/ui/native";
+import { Button, Card, Surface } from "@beeto/ui/native/components";
 
 export default function Index() {
   return (

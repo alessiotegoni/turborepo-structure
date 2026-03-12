@@ -5,7 +5,6 @@ import {
   Head,
   Heading,
   Html,
-  Link,
   Preview,
   Section,
   Tailwind,
@@ -17,7 +16,7 @@ interface AuthEmailProps {
   otp: string;
 }
 
-export const AuthEmail = ({ url, otp }: AuthEmailProps) => {
+export const AuthEmail = ({ url: _url, otp }: AuthEmailProps) => {
   return (
     <Html>
       <Head />

@@ -3,8 +3,8 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 
 import { useAuth } from "@beeto/auth/native/hooks";
 import { supabase } from "@beeto/supabase/native";
-import { Button, InputOTP } from "@beeto/ui/native";
-import { ActionButton } from "@beeto/ui/native/components";
+import { Button, InputOTP } from "@beeto/ui/native/components";
+import { ActionButton } from "@beeto/ui/native/components/extended";
 
 export function VerifyOtpScreen() {
   const router = useRouter();

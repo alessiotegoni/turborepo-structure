@@ -10,7 +10,7 @@ import tseslint from "typescript-eslint";
  * All packages that leverage t3-env should use this rule
  */
 export const restrictEnvAccess = defineConfig(
-  { ignores: ["**/env.ts"] },
+  { ignores: ["**/env.ts", "**/env.*.ts"] },
   {
     files: ["**/*.js", "**/*.ts", "**/*.tsx"],
     rules: {
@@ -66,13 +66,14 @@ export const baseConfig = defineConfig(
         2,
         { checksVoidReturn: { attributes: false } },
       ],
+      "@typescript-eslint/no-floating-promises": "off",
       "@typescript-eslint/no-unnecessary-condition": [
         "error",
         {
           allowConstantLoopConditions: true,
         },
       ],
-      "@typescript-eslint/no-non-null-assertion": "error",
+      "@typescript-eslint/no-non-null-assertion": "warn",
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
     },
   },

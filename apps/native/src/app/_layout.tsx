@@ -17,7 +17,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 
 import { queryClient } from "@beeto/api/native";
 import { UserProvider } from "@beeto/auth/native/providers";
-import { UIProvider } from "@beeto/ui/native";
+import { UIProvider } from "@beeto/ui/native/components";
 
 SplashScreen.preventAutoHideAsync();
 
