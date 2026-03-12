@@ -12,9 +12,9 @@ import { createTRPCContext } from "@trpc/tanstack-react-query";
 import SuperJSON from "superjson";
 
 import type { AppRouter } from "@beeto/api";
+import { supabase } from "@beeto/supabase/client";
 
 import { createQueryClient } from "./query-client";
-import { supabase } from "@beeto/supabase/client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -76,6 +76,6 @@ const getBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_API_URL) return process.env.NEXT_PUBLIC_API_URL;
   if (typeof window !== "undefined") return "http://localhost:4000";
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  
+
   return `http://localhost:${process.env.PORT ?? 4000}`;
 };

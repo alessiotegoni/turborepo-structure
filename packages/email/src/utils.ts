@@ -14,7 +14,7 @@ export interface SendEmailOptions {
   to: string;
   subject: string;
   react: React.ReactElement;
-};
+}
 
 export const sendEmail = async ({ to, subject, react }: SendEmailOptions) => {
   if (!env.SENDGRID_API_KEY) {

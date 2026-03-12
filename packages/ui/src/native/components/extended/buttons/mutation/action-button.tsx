@@ -2,7 +2,7 @@ import { Alert } from "react-native";
 import Animated, { FadeIn, LinearTransition } from "react-native-reanimated";
 import { Button, Spinner } from "heroui-native";
 
-import type { SuccessResponse, MutationButtonProps } from "./types";
+import type { MutationButtonProps, SuccessResponse } from "./types";
 import { useMutation } from "../../../../hooks/use-mutation";
 
 type ActionButtonProps<
@@ -52,7 +52,9 @@ export function ActionButton<
       {
         text: "Conferma",
         style: "destructive",
-        onPress: () => { void performAction(); },
+        onPress: () => {
+          void performAction();
+        },
       },
     ]);
   }

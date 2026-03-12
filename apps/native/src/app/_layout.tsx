@@ -28,7 +28,7 @@ export default function RootLayout() {
     Urbanist_500Medium,
     Urbanist_600SemiBold,
     Urbanist_700Bold,
-    Urbanist_800ExtraBold
+    Urbanist_800ExtraBold,
   });
 
   useEffect(() => {

@@ -12,7 +12,9 @@ export default function Index() {
       <View className="p-5">
         <Card>
           <Card.Header>
-            <Text className="text-primary text-2xl font-urbanist-bold">Beeto</Text>
+            <Text className="text-primary font-urbanist-bold text-2xl">
+              Beeto
+            </Text>
             <Link href="/(public)/events">Vedi eventi</Link>
             <Link href="/(auth)/send-otp">Vedi signin</Link>
           </Card.Header>

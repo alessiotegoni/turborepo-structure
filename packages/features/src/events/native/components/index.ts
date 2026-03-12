@@ -1,1 +1,1 @@
-export * from "./CreateEventForm"
+export * from "./CreateEventForm";

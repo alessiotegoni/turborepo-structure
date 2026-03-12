@@ -1,15 +1,12 @@
-import React from "react";
-import { cn, FieldError, TextField } from "heroui-native";
 import type {
   ControllerFieldState,
   ControllerRenderProps,
   FieldValues,
   Path,
 } from "react-hook-form";
-import {
-  Controller,
-  useFormContext,
-} from "react-hook-form";
+import React from "react";
+import { cn, FieldError, TextField } from "heroui-native";
+import { Controller, useFormContext } from "react-hook-form";
 
 // Props di fieldState normalizzate: sostituiamo `invalid` con `isInvalid`
 // per conformarci alla convenzione HeroUI Native
@@ -68,9 +65,9 @@ function injectFieldStateIntoChildren(
   // L'elemento ha figli React (Fragment, View, Box, o qualsiasi wrapper):
   // lo attraversiamo senza toccare le sue props, iniettando solo nelle foglie.
   if (elementChildren !== undefined && elementChildren !== null) {
-    const hasReactElementChildren = React.Children.toArray(elementChildren).some(
-      (child) => React.isValidElement(child),
-    );
+    const hasReactElementChildren = React.Children.toArray(
+      elementChildren,
+    ).some((child) => React.isValidElement(child));
 
     if (hasReactElementChildren) {
       const newChildren = React.Children.map(elementChildren, (child) =>

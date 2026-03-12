@@ -1,5 +1,6 @@
 import { NextConfig } from "next";
-import "./src/env"
+
+import "./src/env";
 
 const config: NextConfig = {
   typedRoutes: true,

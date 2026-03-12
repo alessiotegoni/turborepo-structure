@@ -3,8 +3,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useTRPC } from "@beeto/api/web/react";
-import { toast } from "@beeto/ui/web";
 import { supabase } from "@beeto/supabase/client";
+import { toast } from "@beeto/ui/web";
 
 interface UseAuthOptions {
   onSignIn?: () => void;
@@ -28,14 +28,14 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
 
   const verifyOtp = useMutation({
     ...trpc.auth.verifyOtp.mutationOptions({
-      onSuccess: async ({data}) => {
+      onSuccess: async ({ data }) => {
         const session = data.session;
         if (session) {
           await supabase.auth.setSession({
             access_token: session.access_token,
             refresh_token: session.refresh_token,
           });
-          queryClient.invalidateQueries(trpc.auth.getUser.pathFilter())
+          queryClient.invalidateQueries(trpc.auth.getUser.pathFilter());
         }
         onSignIn?.();
         toast.success("Accesso eseguito!");
@@ -53,7 +53,7 @@ export function useAuth({ onSignIn, onSignOut }: UseAuthOptions = {}) {
       onSignOut?.();
       toast.success("Disconnesso!");
     },
-      onError: () => {
+    onError: () => {
       toast.danger("Errore");
     },
   });

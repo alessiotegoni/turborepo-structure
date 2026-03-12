@@ -1,5 +1,5 @@
-import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
 import type { z } from "zod/v4";
+import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
 
 import { users } from "@beeto/db/schema";
 

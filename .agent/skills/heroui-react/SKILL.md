@@ -34,7 +34,7 @@ import { HeroUIProvider } from "@heroui/react";
 import { motion } from "framer-motion";
 
 <HeroUIProvider>
-	<Card title="Product" description="A great product" />
+  <Card title="Product" description="A great product" />
 </HeroUIProvider>;
 ```
 
@@ -45,10 +45,10 @@ import { motion } from "framer-motion";
 import { Card } from "@heroui/react@beta";
 
 <Card>
-	<Card.Header>
-		<Card.Title>Product</Card.Title>
-		<Card.Description>A great product</Card.Description>
-	</Card.Header>
+  <Card.Header>
+    <Card.Title>Product</Card.Title>
+    <Card.Description>A great product</Card.Description>
+  </Card.Header>
 </Card>;
 ```
 
@@ -142,18 +142,18 @@ npm i @heroui/styles@beta @heroui/react@beta tailwind-variants tailwindcss @tail
 import "./globals.css";
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="en" suppressHydrationWarning>
-			<body>
-				{/* No Provider needed in HeroUI v3! */}
-				{children}
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        {/* No Provider needed in HeroUI v3! */}
+        {children}
+      </body>
+    </html>
+  );
 }
 ```
 
@@ -161,9 +161,9 @@ export default function RootLayout({
 
 ```js
 export default {
-	plugins: {
-		"@tailwindcss/postcss": {},
-	},
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
 };
 ```
 
@@ -185,12 +185,12 @@ HeroUI v3 uses **compound component patterns**. Each component has subcomponents
 
 ```tsx
 <Card>
-	<Card.Header>
-		<Card.Title>Title</Card.Title>
-		<Card.Description>Description</Card.Description>
-	</Card.Header>
-	<Card.Content>{/* Content */}</Card.Content>
-	<Card.Footer>{/* Actions */}</Card.Footer>
+  <Card.Header>
+    <Card.Title>Title</Card.Title>
+    <Card.Description>Description</Card.Description>
+  </Card.Header>
+  <Card.Content>{/* Content */}</Card.Content>
+  <Card.Footer>{/* Actions */}</Card.Footer>
 </Card>
 ```
 
@@ -226,10 +226,10 @@ HeroUI v3 uses CSS variables with `oklch` color space:
 
 ```css
 :root {
-	--accent: oklch(0.6204 0.195 253.83);
-	--accent-foreground: var(--snow);
-	--background: oklch(0.9702 0 0);
-	--foreground: var(--eclipse);
+  --accent: oklch(0.6204 0.195 253.83);
+  --accent-foreground: var(--snow);
+  --background: oklch(0.9702 0 0);
+  --foreground: var(--eclipse);
 }
 ```
 

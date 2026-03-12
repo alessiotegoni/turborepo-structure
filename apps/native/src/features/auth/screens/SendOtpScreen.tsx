@@ -27,10 +27,7 @@ export function SendOtpScreen() {
             keyboardType="email-address"
             autoCapitalize="none"
           />
-          <ActionButton
-            mutationOptions={sendOtpOptions}
-            variables={{ email }}
-          >
+          <ActionButton mutationOptions={sendOtpOptions} variables={{ email }}>
             <Button.Label>Invia Codice</Button.Label>
           </ActionButton>
         </View>

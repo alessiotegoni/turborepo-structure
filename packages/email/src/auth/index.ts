@@ -8,7 +8,7 @@ export interface SendAuthEmailOptions {
   url: string;
   otp: string;
   isAlreadySignedIn: boolean;
-};
+}
 
 export const sendAuthEmail = async ({
   to,

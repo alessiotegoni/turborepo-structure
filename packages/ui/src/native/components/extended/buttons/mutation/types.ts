@@ -1,11 +1,9 @@
 import type { MutationOptions } from "@tanstack/react-query";
 import type { ButtonRootProps } from "heroui-native";
 
-export interface SuccessResponse<T> {
-  success: true;
-  data: T;
-  message: string;
-}
+import type { SuccessResponse } from "../../../../hooks/use-mutation";
+
+export type { SuccessResponse };
 
 export type MutationButtonProps<
   TData extends SuccessResponse<unknown>,

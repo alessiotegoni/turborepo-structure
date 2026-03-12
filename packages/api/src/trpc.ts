@@ -29,7 +29,7 @@ import { createClient } from "@beeto/supabase/server";
 
 interface ContextType {
   headers: Headers;
-};
+}
 
 export const createTRPCContext = async ({ headers }: ContextType) => {
   const supabase = createClient(headers);

@@ -1,9 +1,13 @@
+import type { MutationOptions } from "@tanstack/react-query";
 import { useEffect, useEffectEvent } from "react";
 import { useMutation as useTanstackMutation } from "@tanstack/react-query";
-import type { MutationOptions } from "@tanstack/react-query";
 import { useToast } from "heroui-native";
 
-import type { SuccessResponse } from "@beeto/api/helpers";
+export interface SuccessResponse<T> {
+  success: true;
+  data: T;
+  message: string;
+}
 
 interface UseMutationConfig {
   /** Se true, mostra un toast automatico su successo e su errore. @default true */
