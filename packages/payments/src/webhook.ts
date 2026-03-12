@@ -27,20 +27,16 @@ export const handleStripeWebhook = async (body: string, sig: string) => {
   switch (event.type) {
     case "checkout.session.completed": {
       const userId = session.client_reference_id;
-      const stripeCustomerId = session.customer as string;
+      // const stripeCustomerId = session.customer as string;
       const stripeSubscriptionId = session.subscription as string;
 
       if (!userId) {
         throw new Error("Missing client_reference_id in session");
       }
 
-      await db.insert(subscriptions).values({
-        userId,
-        stripeCustomerId,
-        stripeSubscriptionId,
-        status: "active",
-        active: true,
-      });
+      await db
+        .insert(subscriptions)
+        .values({ userId, planId: "demo", stripeSubscriptionId });
       break;
     }
 
@@ -48,7 +44,7 @@ export const handleStripeWebhook = async (body: string, sig: string) => {
       const subscription = event.data.object;
       await db
         .update(subscriptions)
-        .set({ status: subscription.status, active: false })
+        .set({ status: subscription.status })
         .where(eq(subscriptions.stripeSubscriptionId, subscription.id));
       break;
     }
