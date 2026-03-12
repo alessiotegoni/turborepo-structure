@@ -1,0 +1,7 @@
+{
+  "*.{js,jsx,ts,tsx}": [
+    "prettier --write --ignore-path .gitignore",
+    "eslint --fix --flag unstable_native_nodejs_ts_config"
+  ],
+  "*.{json,css,md,yml,yaml}": ["prettier --write --ignore-path .gitignore"]
+}
