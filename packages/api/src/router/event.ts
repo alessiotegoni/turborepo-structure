@@ -6,7 +6,7 @@ import {
   deleteEvent,
   getEventById,
   getEvents,
-} from "@beeto/db/queries/events";
+} from "@beeto/db/queries";
 import { insertEventSchema } from "@beeto/features/events/validators";
 
 import { createSuccess } from "../helpers";
@@ -26,7 +26,7 @@ export const eventRouter = {
     .mutation(async ({ input, ctx }) => {
       await createEvent({
         ...input,
-        createdBy: ctx.user.id,
+        creatorId: ctx.user.id,
       });
 
       return createSuccess(null, "Evento creato con successo!");

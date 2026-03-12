@@ -2,7 +2,7 @@ import type { TRPCRouterRecord } from "@trpc/server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { createUser, getUserByEmail } from "@beeto/db/queries/users";
+import { createProfile, getProfileByEmail } from "@beeto/db/queries";
 import { sendAuthEmail } from "@beeto/email";
 import { createAdminClient } from "@beeto/supabase/admin";
 
@@ -54,7 +54,7 @@ export const authRouter = {
   verifyOtp: publicProcedure
     .input(z.object({ email: z.email(), token: z.string() }))
     .mutation(async ({ input, ctx }) => {
-      const user = await getUserByEmail(input.email);
+      const user = await getProfileByEmail(input.email);
 
       const { data, error } = await ctx.supabase.auth.verifyOtp({
         email: input.email,
@@ -70,7 +70,7 @@ export const authRouter = {
       }
 
       if (!user) {
-        await createUser({
+        await createProfile({
           id: data.user.id,
           email: input.email,
         });
