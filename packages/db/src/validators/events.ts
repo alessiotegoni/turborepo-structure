@@ -1,7 +1,7 @@
 import { createInsertSchema, createUpdateSchema } from "drizzle-zod";
 import { z } from "zod/v4";
 
-import { events } from "@beeto/db/schema";
+import { events } from "../schema";
 
 export const insertEventSchema = createInsertSchema(events, {
   title: z.string().min(5, "Il titolo deve avere almeno 5 caratteri"),

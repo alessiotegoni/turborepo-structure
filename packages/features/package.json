@@ -3,10 +3,6 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./events/validators": {
-      "types": "./src/events/validators/index.ts",
-      "default": "./src/events/validators/index.ts"
-    },
     "./events/web/hooks": {
       "types": "./src/events/web/hooks/index.ts",
       "default": "./src/events/web/hooks/index.ts"
@@ -26,14 +22,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "clean": "rimraf .cache .turbo dist node_modules",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
-    "drizzle-zod": "catalog:",
     "zod": "catalog:"
   },
   "peerDependencies": {

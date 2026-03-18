@@ -8,7 +8,7 @@
   "packageManager": "pnpm@10.19.0",
   "scripts": {
     "build": "turbo run build",
-    "clean": "git clean -xdf node_modules",
+    "clean": "rimraf node_modules",
     "clean:workspaces": "turbo run clean",
     "db:push": "turbo -F @beeto/db push",
     "db:studio": "turbo -F @beeto/db studio",
@@ -34,6 +34,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.3.3",
     "prettier": "catalog:",
+    "rimraf": "^6.0.1",
     "turbo": "^2.5.8",
     "typescript": "catalog:"
   },

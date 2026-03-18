@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "clean": "git clean -xdf .cache .expo .turbo android ios node_modules",
+    "clean": "rimraf .cache .expo .turbo android ios node_modules",
     "with-env": "dotenv -e ../../.env --",
     "dev": "pnpm with-env expo start",
     "dev:android": "pnpm with-env expo start --android",
