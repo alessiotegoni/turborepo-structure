@@ -13,6 +13,8 @@
     "generate:android": "pnpm with-env expo prebuild --platform android --clean",
     "generate:ios": "pnpm with-env expo prebuild --platform ios --clean",
     "generate": "pnpm with-env expo prebuild --clean",
+    "eas:build:android": "eas build -p android --profile development",
+    "eas:build:ios": "eas build -p android --profile ios-simulator",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit"
@@ -23,6 +25,7 @@
     "@beeto/features": "workspace:^",
     "@beeto/ui": "workspace:*",
     "@expo-google-fonts/urbanist": "^0.4.2",
+    "@expo/metro-runtime": "catalog:",
     "@gorhom/bottom-sheet": "^5.2.8",
     "@react-navigation/bottom-tabs": "^7.7.3",
     "@react-navigation/elements": "^2.8.1",
@@ -33,6 +36,7 @@
     "@trpc/tanstack-react-query": "catalog:",
     "expo": "~55.0.5",
     "expo-constants": "~55.0.7",
+    "expo-dev-client": "^55.0.17",
     "expo-device": "~55.0.9",
     "expo-font": "~55.0.4",
     "expo-glass-effect": "~55.0.7",
@@ -46,6 +50,7 @@
     "expo-web-browser": "~55.0.9",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
+    "react-hook-form": "catalog:",
     "react-native": "catalog:",
     "react-native-gesture-handler": "catalog:",
     "react-native-mmkv": "catalog:",
@@ -54,9 +59,7 @@
     "react-native-screens": "~4.23.0",
     "react-native-svg": "^15.15.3",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "catalog:",
-    "react-hook-form": "catalog:",
-    "@expo/metro-runtime": "catalog:"
+    "react-native-worklets": "catalog:"
   },
   "devDependencies": {
     "@beeto/db": "workspace:*",

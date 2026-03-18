@@ -138,4 +138,18 @@ Sviluppatore A e B completano un ticket per conti separati e il CTO approva a en
 1. GitHub mette il file di PR numero A ed il file di PR numero B in "fila / coda".
 2. Prende il tuo Main, ci merge temporaneamente i branch uniti, fa rieseguire CI Test a QUESTA versione unita in sottofondo nel workflow (questo trigger di background che github lancia si identifica come `merge_group` trigger di cui avevamo la voce in `ci.yml`).
 3. Alla terminazione e approvazione a pallino rosso/verde in GitHub della CI, esso la sposa definitivamente.
-   Zero problemi, e la CI risolverà le dispute. (Questo va abilitato appositamente su repo private dei Branch Protection Rules di GitHub "Require Merge Queue").
+   Zero problemi, e la CI risolverà le dispute.
+
+### Come attivare la Merge Queue su GitHub
+
+Per abilitare questa funzione sulla vostra repository, segui questi passaggi:
+
+1. Assicurati che l'evento `merge_group:` sia presente nel blocco `on:` del tuo workflow (come è già impostato nel nostro `.github/workflows/ci.yml`).
+2. Vai sulla pagina della tua repository su GitHub e clicca nella tab **"Settings"** (Impostazioni).
+3. Nella barra laterale sinistra, sotto la sezione "Code and automation", clicca su **"Branches"**.
+4. Clicca su **"Add branch protection rule"** (oppure modifica la regola esistente per il tuo branch `main` cliccandoci sopra).
+5. Se stai creando una nuova regola, inserisci `main` nel campo _"Branch name pattern"_.
+6. Scorri l'elenco delle varie opzioni di protezione e spunta la casella **"Require merge queue"**.
+7. Salva la nuova configurazione cliccando sul bottone **"Save changes"** a fondo pagina.
+
+_(Nota: L'opzione "Require merge queue" è utilizzabile in forma nativa in repositories private che operano sotto piane Github per Organizzazioni, o su i repositories Pubblici)._
