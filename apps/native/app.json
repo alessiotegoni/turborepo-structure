@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "native-2",
-    "slug": "native-2",
+    "name": "beeto",
+    "slug": "beeto",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "native2",
+    "scheme": "beeto2",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -18,7 +18,7 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.pescivendolo.native2"
+      "package": "com.longhys.beeto2"
     },
     "web": {
       "output": "static",
@@ -40,6 +40,13 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fc834e10-3b6a-421a-980f-cc154224ef9e"
+      }
+    },
+    "owner": "longhys"
   }
 }
