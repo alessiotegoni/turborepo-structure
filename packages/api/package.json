@@ -41,15 +41,16 @@
     "zod": "catalog:"
   },
   "peerDependencies": {
-    "@beeto/supabase": "workspace:*",
     "@beeto/db": "workspace:*",
+    "@beeto/supabase": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/react-query": "catalog:",
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
+    "next": "catalog:",
     "react": "catalog:react19",
-    "next": "catalog:"
+    "react-dom": "catalog:react19"
   },
   "peerDependenciesMeta": {
     "@beeto/db": {
@@ -60,22 +61,23 @@
     }
   },
   "devDependencies": {
-    "@beeto/supabase": "workspace:*",
     "@beeto/db": "workspace:*",
+    "@beeto/eslint-config": "workspace:*",
+    "@beeto/prettier-config": "workspace:*",
+    "@beeto/supabase": "workspace:*",
+    "@beeto/tsconfig": "workspace:*",
+    "@expo/metro-runtime": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@trpc/client": "catalog:",
     "@trpc/react-query": "catalog:",
     "@trpc/server": "catalog:",
     "@trpc/tanstack-react-query": "catalog:",
-    "react": "catalog:react19",
-    "next": "catalog:",
-    "@beeto/eslint-config": "workspace:*",
-    "@beeto/prettier-config": "workspace:*",
-    "@beeto/tsconfig": "workspace:*",
-    "@expo/metro-runtime": "catalog:",
     "@types/react": "catalog:react19",
     "eslint": "catalog:",
+    "next": "catalog:",
     "prettier": "catalog:",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19",
     "typescript": "catalog:"
   },
   "prettier": "@beeto/prettier-config"

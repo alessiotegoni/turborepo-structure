@@ -14,7 +14,7 @@
     "generate:ios": "pnpm with-env expo prebuild --platform ios --clean",
     "generate": "pnpm with-env expo prebuild --clean",
     "eas:build:android": "eas build -p android --profile development",
-    "eas:build:ios": "eas build -p android --profile ios-simulator",
+    "eas:build:ios": "eas build -p ios --profile ios-simulator",
     "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit"
@@ -43,7 +43,7 @@
     "expo-image": "~55.0.6",
     "expo-linking": "~55.0.7",
     "expo-router": "~55.0.6",
-    "expo-secure-store": "~55.0.9",
+    "expo-secure-store": "catalog:",
     "expo-splash-screen": "~55.0.11",
     "expo-status-bar": "~55.0.4",
     "expo-symbols": "~55.0.5",
@@ -60,7 +60,7 @@
     "react-native-screens": "~4.23.0",
     "react-native-svg": "^15.15.3",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.7.2"
+    "react-native-worklets": "0.7.4"
   },
   "devDependencies": {
     "@beeto/db": "workspace:*",

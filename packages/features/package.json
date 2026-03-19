@@ -48,19 +48,19 @@
   "devDependencies": {
     "@beeto/auth": "workspace:*",
     "@beeto/db": "workspace:*",
-    "@beeto/ui": "workspace:*",
-    "@tanstack/react-query": "catalog:",
-    "react": "catalog:react19",
     "@beeto/eslint-config": "workspace:*",
     "@beeto/prettier-config": "workspace:*",
     "@beeto/tsconfig": "workspace:*",
+    "@beeto/ui": "workspace:*",
+    "@tanstack/react-query": "catalog:",
     "@types/react": "catalog:react19",
     "eslint": "catalog:",
     "prettier": "catalog:",
+    "react": "^19.2.0",
     "react-native": "catalog:",
-    "utf-8-validate": "catalog:",
     "typescript": "catalog:",
-    "uniwind": "catalog:"
+    "uniwind": "catalog:",
+    "utf-8-validate": "catalog:"
   },
   "prettier": "@beeto/prettier-config"
 }

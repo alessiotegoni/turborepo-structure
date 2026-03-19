@@ -43,9 +43,10 @@
   "peerDependencies": {
     "@tanstack/react-query": "catalog:",
     "react": "catalog:react19",
+    "react-dom": "catalog:react19",
+    "react-hook-form": "catalog:",
     "react-native": "catalog:",
     "react-native-reanimated": "catalog:",
-    "react-hook-form": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -57,6 +58,7 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "react": "catalog:react19",
+    "react-dom": "catalog:react19",
     "typescript": "catalog:"
   },
   "prettier": "@beeto/prettier-config"
