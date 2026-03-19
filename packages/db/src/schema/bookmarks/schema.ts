@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   foreignKey,
   index,
@@ -8,8 +7,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { events } from "./events";
-import { profiles } from "./profiles";
+import { events } from "../events/schema";
+import { profiles } from "../profiles/schema";
 
 export const bookmarks = pgTable(
   "bookmarks",
@@ -45,16 +44,5 @@ export const bookmarks = pgTable(
     }),
   ],
 );
-
-export const bookmarksRelations = relations(bookmarks, ({ one }) => ({
-  event: one(events, {
-    fields: [bookmarks.eventId],
-    references: [events.id],
-  }),
-  profile: one(profiles, {
-    fields: [bookmarks.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type Bookmark = typeof bookmarks.$inferSelect;

@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   doublePrecision,
   foreignKey,
@@ -9,12 +9,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { bookmarks } from "./bookmarks";
-import { categories } from "./categories";
-import { eventCommunications } from "./event-communications";
-import { profiles } from "./profiles";
-import { ticketTypes } from "./ticket-types";
-import { tickets } from "./tickets";
+import { categories } from "../categories/schema";
+import { profiles } from "../profiles/schema";
 
 export const events = pgTable(
   "events",
@@ -80,20 +76,5 @@ export const events = pgTable(
     }).onDelete("cascade"),
   ],
 );
-
-export const eventsRelations = relations(events, ({ one, many }) => ({
-  ticketTypes: many(ticketTypes),
-  tickets: many(tickets),
-  category: one(categories, {
-    fields: [events.categoryId],
-    references: [categories.id],
-  }),
-  profile: one(profiles, {
-    fields: [events.creatorId],
-    references: [profiles.id],
-  }),
-  eventCommunications: many(eventCommunications),
-  bookmarks: many(bookmarks),
-}));
 
 export type Event = typeof events.$inferSelect;

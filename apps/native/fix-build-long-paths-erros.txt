@@ -1,0 +1,14 @@
+FIX ERRORE PATH LUNGHI
+
+inserire in android/app/build.grandle in defaultConfig
+
+ // Fix per il supporto ai path lunghi su Windows (Ninja build)
+        // https://github.com/ninja-build/ninja/issues/1900
+        externalNativeBuild {
+            cmake {
+                arguments "-DCMAKE_MAKE_PROGRAM=C:\\ninja\\ninja.exe", "-DCMAKE_OBJECT_PATH_MAX=1024"
+            }
+        }
+
+vedi: https://github.com/ninja-build/ninja/issues/1900
+      https://github.com/ninja-build/ninja/pull/1939

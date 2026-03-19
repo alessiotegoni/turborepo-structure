@@ -1,8 +1,5 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { pgTable, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
-
-import { events } from "./events";
-import { userCategories } from "./user-categories";
 
 export const categories = pgTable(
   "categories",
@@ -19,10 +16,5 @@ export const categories = pgTable(
   },
   (table) => [unique("categories_name_key").on(table.name)],
 );
-
-export const categoriesRelations = relations(categories, ({ many }) => ({
-  events: many(events),
-  userCategories: many(userCategories),
-}));
 
 export type Category = typeof categories.$inferSelect;

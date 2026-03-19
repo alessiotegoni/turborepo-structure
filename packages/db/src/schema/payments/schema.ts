@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   foreignKey,
   index,
@@ -10,7 +10,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { profiles } from "./profiles";
+import { profiles } from "../profiles/schema";
 
 export const payments = pgTable(
   "payments",
@@ -45,12 +45,5 @@ export const payments = pgTable(
     }).onDelete("cascade"),
   ],
 );
-
-export const paymentsRelations = relations(payments, ({ one }) => ({
-  profile: one(profiles, {
-    fields: [payments.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type Payment = typeof payments.$inferSelect;

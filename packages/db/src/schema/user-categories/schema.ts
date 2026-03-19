@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   foreignKey,
   index,
@@ -8,8 +7,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { categories } from "./categories";
-import { profiles } from "./profiles";
+import { categories } from "../categories/schema";
+import { profiles } from "../profiles/schema";
 
 export const userCategories = pgTable(
   "user_categories",
@@ -45,16 +44,5 @@ export const userCategories = pgTable(
     }),
   ],
 );
-
-export const userCategoriesRelations = relations(userCategories, ({ one }) => ({
-  category: one(categories, {
-    fields: [userCategories.categoryId],
-    references: [categories.id],
-  }),
-  profile: one(profiles, {
-    fields: [userCategories.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type UserCategory = typeof userCategories.$inferSelect;

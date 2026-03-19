@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   foreignKey,
   index,
@@ -8,8 +7,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { events } from "./events";
-import { profiles } from "./profiles";
+import { events } from "../events/schema";
+import { profiles } from "../profiles/schema";
 
 export const eventCommunications = pgTable(
   "event_communications",
@@ -40,20 +39,6 @@ export const eventCommunications = pgTable(
       name: "event_communications_sender_id_fkey",
     }).onDelete("cascade"),
   ],
-);
-
-export const eventCommunicationsRelations = relations(
-  eventCommunications,
-  ({ one }) => ({
-    event: one(events, {
-      fields: [eventCommunications.eventId],
-      references: [events.id],
-    }),
-    profile: one(profiles, {
-      fields: [eventCommunications.senderId],
-      references: [profiles.id],
-    }),
-  }),
 );
 
 export type EventCommunication = typeof eventCommunications.$inferSelect;

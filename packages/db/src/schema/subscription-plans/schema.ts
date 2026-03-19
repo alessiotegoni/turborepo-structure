@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   boolean,
   integer,
@@ -9,8 +9,6 @@ import {
   unique,
   uuid,
 } from "drizzle-orm/pg-core";
-
-import { subscriptions } from "./subscriptions";
 
 export const subscriptionPlans = pgTable(
   "subscription_plans",
@@ -32,13 +30,6 @@ export const subscriptionPlans = pgTable(
   (table) => [
     unique("subscription_plans_stripe_price_id_key").on(table.stripePriceId),
   ],
-);
-
-export const subscriptionPlansRelations = relations(
-  subscriptionPlans,
-  ({ many }) => ({
-    subscriptions: many(subscriptions),
-  }),
 );
 
 export type SubscriptionPlan = typeof subscriptionPlans.$inferSelect;

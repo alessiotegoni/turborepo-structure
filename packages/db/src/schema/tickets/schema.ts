@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   boolean,
   foreignKey,
@@ -11,9 +11,9 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { events } from "./events";
-import { profiles } from "./profiles";
-import { ticketTypes } from "./ticket-types";
+import { events } from "../events/schema";
+import { profiles } from "../profiles/schema";
+import { ticketTypes } from "../ticket-types/schema";
 
 export const tickets = pgTable(
   "tickets",
@@ -69,20 +69,5 @@ export const tickets = pgTable(
     unique("tickets_user_id_event_id_key").on(table.userId, table.eventId),
   ],
 );
-
-export const ticketsRelations = relations(tickets, ({ one }) => ({
-  event: one(events, {
-    fields: [tickets.eventId],
-    references: [events.id],
-  }),
-  ticketType: one(ticketTypes, {
-    fields: [tickets.ticketTypeId],
-    references: [ticketTypes.id],
-  }),
-  profile: one(profiles, {
-    fields: [tickets.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type Ticket = typeof tickets.$inferSelect;

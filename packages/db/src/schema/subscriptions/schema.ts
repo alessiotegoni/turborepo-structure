@@ -1,4 +1,4 @@
-import { relations, sql } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import {
   boolean,
   foreignKey,
@@ -10,8 +10,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { profiles } from "./profiles";
-import { subscriptionPlans } from "./subscription-plans";
+import { profiles } from "../profiles/schema";
+import { subscriptionPlans } from "../subscription-plans/schema";
 
 export const subscriptions = pgTable(
   "subscriptions",
@@ -61,16 +61,5 @@ export const subscriptions = pgTable(
     ),
   ],
 );
-
-export const subscriptionsRelations = relations(subscriptions, ({ one }) => ({
-  subscriptionPlan: one(subscriptionPlans, {
-    fields: [subscriptions.planId],
-    references: [subscriptionPlans.id],
-  }),
-  profile: one(profiles, {
-    fields: [subscriptions.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type Subscription = typeof subscriptions.$inferSelect;

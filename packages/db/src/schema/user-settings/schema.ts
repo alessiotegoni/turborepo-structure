@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   boolean,
   foreignKey,
@@ -7,7 +6,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { profiles } from "./profiles";
+import { profiles } from "../profiles/schema";
 
 export const userSettings = pgTable(
   "user_settings",
@@ -26,12 +25,3 @@ export const userSettings = pgTable(
     }).onDelete("cascade"),
   ],
 );
-
-export const userSettingsRelations = relations(userSettings, ({ one }) => ({
-  profile: one(profiles, {
-    fields: [userSettings.userId],
-    references: [profiles.id],
-  }),
-}));
-
-export type UserSettings = typeof userSettings.$inferSelect;

@@ -1,4 +1,3 @@
-import { relations } from "drizzle-orm";
 import {
   foreignKey,
   pgTable,
@@ -8,7 +7,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
-import { profiles } from "./profiles";
+import { profiles } from "../profiles/schema";
 
 export const pushTokens = pgTable(
   "push_tokens",
@@ -32,12 +31,5 @@ export const pushTokens = pgTable(
     }),
   ],
 );
-
-export const pushTokensRelations = relations(pushTokens, ({ one }) => ({
-  profile: one(profiles, {
-    fields: [pushTokens.userId],
-    references: [profiles.id],
-  }),
-}));
 
 export type PushToken = typeof pushTokens.$inferSelect;
