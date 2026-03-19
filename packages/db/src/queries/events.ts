@@ -1,7 +1,7 @@
 import { desc, eq } from "drizzle-orm";
 
 import { db } from "../client";
-import { events } from "../schema/events";
+import { events } from "../schema";
 
 export function getEvents() {
   return db.query.events.findMany({
