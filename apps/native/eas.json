@@ -1,7 +1,9 @@
 {
   "cli": {
     "version": ">= 18.4.0",
+    // Hover me!
     "appVersionSource": "remote"
+    // eas build:version:set per settare la versione da cui partire
   },
   "build": {
     "development": {
@@ -21,7 +23,8 @@
       "distribution": "internal",
       "env": {
         "APP_VARIANT": "preview"
-      }
+      },
+      "autoIncrement": true
     },
     "production": {
       "autoIncrement": true

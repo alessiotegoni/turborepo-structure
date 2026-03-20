@@ -46,6 +46,7 @@ export default ({ config }: ConfigContext) =>
       infoPlist: {
         ITSAppUsesNonExemptEncryption: false,
       },
+      // buildNumber: "1" handled by eas
     },
     android: {
       adaptiveIcon: {
@@ -56,6 +57,7 @@ export default ({ config }: ConfigContext) =>
       },
       predictiveBackGestureEnabled: false,
       package: getUniqueIdentifier(),
+      // versionCode: 1 handled by eas
     },
     web: {
       output: "static",

@@ -1,6 +1,6 @@
 FIX ERRORE PATH LUNGHI
 
-inserire in android/app/build.grandle in defaultConfig
+inserire in android/app/build.grandle in defaultConfig ed inserira l'exe di ninja in C:/ninja/ninja.exe
 
  // Fix per il supporto ai path lunghi su Windows (Ninja build)
         // https://github.com/ninja-build/ninja/issues/1900
